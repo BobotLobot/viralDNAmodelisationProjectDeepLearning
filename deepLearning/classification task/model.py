@@ -11,12 +11,14 @@ import random
 
 leakySlope=0.15
 
-# PyTorch TensorBoard support
-# from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
 
+"""
+contains the main model used for classification, as well as tools for data augmentation
+"""
+
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile, noiseDirectory,noNoiseDirectory,onlyNoise,training= False, transform=None): 
+    def __init__(self, metaFile, noiseDirectory,noNoiseDirectory,onlyNoise,training= False, transform=None):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
@@ -40,12 +42,11 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
             "onlyNoise" : False,
         }
         with open(metaFile, mode="r+") as metaData:
-            files= [os.path.basename(file) for file in os.listdir(NoisyDirectory)]
+            files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)]
             csv_reader = csv.DictReader(metaData)
             totaleFind=0
             
             for row in csv_reader:
-                # print(row["Box_file_name_With_Noise"]) if row["Box_file_name_With_Noise"] is not None else None
                 for file in files:
                     if row["Box_file_name_With_Noise"] in files:
                         totaleFind+=1
@@ -93,15 +94,21 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         return mrcDataTorch
 
     def rot(self,mrcDataTorch:torch)->torch:
-        turnNumber=np.random.randint(4)# 25% chance of rotation (also 25% that nothing happen--> case 0 )
+	"""
+	The decision of whether or not to rotate the data is made in this function
+	Rotation is also carried out here, returns data after potential(!) rotation
+	"""
+        turnNumber=np.random.randint(4) # 25% chance of rotation (also 25% that nothing happen--> case 0 )
         axe= [0,1]
-        torch.rot90(mrcDataTorch, k=turnNumber, dims=axe) 
+        torch.rot90(mrcDataTorch, k=turnNumber, dims=axe)
         return mrcDataTorch
     
-            #mrcDataTorch = torch.nn.functional.dropout(mrcDataTorch, p=0.5, training=True)
     def augmentation(self, mrcDataTorchFormated:torch)->torch:
-        
-        mrcDataTorchFormated=self.filp(mrcDataTorchFormated,0.5)
+        """
+        Passes the data through two functions that carry out potential(!) data augmentations
+        "potential" because the random decision whether to augment tha data is made in the functions called by this function
+        """
+        mrcDataTorchFormated=self.filp(mrcDataTorchFormated,0.5) # the likelihood of flipping the data is 50%, as indicated by the argument
         mrcDataTorchFormated = self.rot(mrcDataTorchFormated)
         return mrcDataTorchFormated
     
@@ -114,15 +121,13 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         return fileName
     
     def __getitem__(self, idx):
-        
         mrcDic = self.MrcFiles[idx]
         mrcfileName = mrcDic["filename"]
-        
 
         if mrcDic["onlyNoise"]:
             label = [2] #score when no data present
         else:
-            mrcfileName = self.doesNeedDenoiseAugmentation(mrcfileName,mrcDic["denoiseFileName"])
+            mrcfileName = self.doesNeedDenoiseAugmentation(mrcfileName,mrcDic["denoiseFileName"]) # random chance of denoising file
             label = [mrcDic["zEnd"]]
 
         # Loading data
@@ -152,7 +157,10 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
 
 
 class SkippConnnection(nn.Module):
-    def __init__(self, in_channels, expansion=4):  
+	"""
+	defines a residual network block used in the main model
+	"""
+    def __init__(self, in_channels, expansion=4):
         super().__init__()
         hidden_dim = in_channels * expansion
         
@@ -185,6 +193,9 @@ class SkippConnnection(nn.Module):
 
 
 class ModelClassificationMultival(nn.Module):
+    """
+    The main model
+    """
     def __init__(self, in_channels=1, num_classes=2):
         super().__init__()
         
@@ -197,12 +208,12 @@ class ModelClassificationMultival(nn.Module):
             nn.MaxPool3d(2, 2),
             
 
-            SkippConnnection(32),
+            SkippConnnection(32), # calls a residual neural network block (as previously defined)
             SkippConnnection(32),
 
             nn.Conv3d(32, 64, 3, stride=1, padding=1, bias=False),
             nn.BatchNorm3d(64),
-            nn.LeakyReLU(leakySlope), 
+            nn.LeakyReLU(leakySlope),
             nn.Dropout3d(0.3),
             
             SkippConnnection(64),

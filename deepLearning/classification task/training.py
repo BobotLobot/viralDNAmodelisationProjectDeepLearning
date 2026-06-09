@@ -6,7 +6,6 @@ import logging
 from torch.cuda.amp import autocast, GradScaler
 import csv
 #previous best model: best_modelEpoch37.pth
-# from torch.utils.tensorboard import SummaryWriter
 
 def save_losses_to_csv(train_losses, valid_losses, file_path='losses.csv')->None:
         with open(file_path, mode='w', newline='') as file:
