@@ -1,6 +1,5 @@
 import torch
 import os
-import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader, random_split , ConcatDataset
 import mrcfile
@@ -94,10 +93,10 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         return mrcDataTorch
 
     def rot(self,mrcDataTorch:torch)->torch:
-	"""
-	The decision of whether or not to rotate the data is made in this function
-	Rotation is also carried out here, returns data after potential(!) rotation
-	"""
+        """
+        The decision of whether or not to rotate the data is made in this function
+        Rotation is also carried out here, returns data after potential(!) rotation
+        """
         turnNumber=np.random.randint(4) # 25% chance of rotation (also 25% that nothing happen--> case 0 )
         axe= [0,1]
         torch.rot90(mrcDataTorch, k=turnNumber, dims=axe)
@@ -157,9 +156,9 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
 
 
 class SkippConnnection(nn.Module):
-	"""
-	defines a residual network block used in the main model
-	"""
+    """
+    defines a residual network block used in the main model
+    """
     def __init__(self, in_channels, expansion=4):
         super().__init__()
         hidden_dim = in_channels * expansion
