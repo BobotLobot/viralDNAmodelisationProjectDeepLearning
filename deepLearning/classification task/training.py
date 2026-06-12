@@ -1,13 +1,11 @@
 from model import *
 import time
 import matplotlib.pyplot as plt
-# import tqdm
 import logging
 from torch.cuda.amp import autocast, GradScaler
 import csv
 from argparse import ArgumentParser
 import os
-#previous best model: best_modelEpoch37.pth
 
 def save_losses_to_csv(train_losses, valid_losses, file_path='losses.csv')->None:
     with open(file_path, mode='w', newline='') as file:
@@ -51,9 +49,8 @@ def are_args_valid(args) -> bool:
             print(f"Fatal: path {path} does not exist")
             return False
     return True
-    
-def main():
-    #parse and check arguments
+
+def get_args():
     parser = ArgumentParser()
     parser.add_argument("--fine_tuning", "-ft", action="store_true")
     parser.add_argument("--log_path", "-l", type=str, required=False, default='training_log.log')
@@ -66,8 +63,11 @@ def main():
     parser.add_argument("--loss_output", "-lo", type=str, default="training_loss.png")
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
 
-    args = parser.parse_args()
-    
+    return parser.parse_args()
+
+def main():
+    #parse and check arguments
+    args = get_args()
     if not are_args_valid(args):
         return
     

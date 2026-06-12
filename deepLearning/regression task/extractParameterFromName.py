@@ -8,6 +8,7 @@ def get_radius_value(filename):
     if match:
         return float(match.group(1))
     return None
+
 def get_radius_valueint(filename):
     match = re.search(r'radius(\d+)', filename)
     if match:
@@ -19,6 +20,7 @@ def get_pitch_value(filename):
     match_decimal = re.search(r'pitch(\d+\.\d+)', filename)
     if match_decimal:
         return float(match_decimal.group(1))
+
 def get_phi_value(filename):
     match = re.search(r'phi(\d+)', filename)
     if match:
@@ -30,7 +32,6 @@ def getMrcFeatures(directory="/cephyr/users/robincoh/Alvis/viralTracing/dataset/
     listFeatures = []
     for filename in os.listdir(directory):
         if filename.endswith(".mrc"):
-
             #get radius
             radius = get_radius_value(filename)
             if radius is None:
