@@ -8,7 +8,149 @@ import mrcfile
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import random
+
 leakySlope=0.2
+
+class MrcDataset1vMetaDataWithNoiseFile(Dataset):
+    def __init__(self, metaFile, noiseDirectory,noNoiseDirectory,onlyNoise,training= False, transform=None):
+        self.transform = transform
+        self.augmenation_prob = 0.5
+        self.MrcFiles =[]
+        self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory)
+        self.denoise_prob = 0.05
+        self.training = training
+        self.loadOnlyNoisyFile(onlyNoise)
+        
+
+    def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
+        self.training = training
+    
+    def filterMetaData(self,metaFile,NoisyDirectory,noNoiseDirectory):
+        mrcDic={
+            "filename": None,
+            "radius": None,
+            "pitch": None,
+            "dataPoints": None,
+            "zEnd": None,
+            "denoiseFileName": None,
+            "onlyNoise" : False,
+        }
+        with open(metaFile, mode="r+") as metaData:
+            files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)]
+            csv_reader = csv.DictReader(metaData)
+            totaleFind=0
+            
+            for row in csv_reader:
+                for file in files:
+                    if row["Box_file_name_With_Noise"] in files:
+                        totaleFind+=1
+                        mrcDic["filename"]=(os.path.join(NoisyDirectory,row["Box_file_name_With_Noise"]))
+                        mrcDic["radius"]=float(row["radius"])
+                        mrcDic["pitch"]=float(row["pitch"])
+                        mrcDic["dataPoints"]=int(row["numberOfPointBox"])
+                        if mrcDic["dataPoints"]<500:
+                            mrcDic["onlyNoise"] = True
+                        mrcDic["zEnd"]=row["zEndpoint"] # will often be None
+                        if mrcDic["zEnd"]=="None":
+                            mrcDic["zEnd"] = 0
+                        else:
+                            mrcDic["zEnd"] = 1
+                        mrcDic["denoiseFileName"]=os.path.join(noNoiseDirectory,row["Box_file_name_No_Noise"])
+                        files.remove(file)
+                        self.MrcFiles.append(mrcDic.copy())
+    def loadOnlyNoisyFile(self,onlyNoiseDirectory):
+        mrcDic={
+            "filename": None,
+            "radius": None,
+            "pitch": None,
+            "dataPoints": None,
+            "zEnd": None,
+            "denoiseFileName": None,
+            "onlyNoise" : True,
+        }
+        files=os.listdir(onlyNoiseDirectory)
+        random.shuffle(files)
+        for filename in files[0:1000]:
+            if filename.endswith(".mrc"):
+                mrcDic["filename"]=os.path.join(onlyNoiseDirectory,filename)
+                self.MrcFiles.append(mrcDic.copy())
+            else:
+                continue
+        return
+    def __len__(self):
+        return len(self.MrcFiles)
+
+    def filp(self,mrcDataTorch:torch,flip_prob:float)->torch:
+        if np.random.rand() < flip_prob:
+            axes = [0, 2]#z axis
+            
+            mrcDataTorch = torch.flip(mrcDataTorch, dims=[axes[np.random.randint(len(axes))]])
+        return mrcDataTorch
+
+    def rot(self,mrcDataTorch:torch)->torch:
+        """
+        The decision of whether or not to rotate the data is made in this function
+        Rotation is also carried out here, returns data after potential(!) rotation
+        """
+        turnNumber=np.random.randint(4) # 25% chance of rotation (also 25% that nothing happen--> case 0 )
+        axe= [0,1]
+        torch.rot90(mrcDataTorch, k=turnNumber, dims=axe)
+        return mrcDataTorch
+    
+    def augmentation(self, mrcDataTorchFormated:torch)->torch:
+        """
+        Passes the data through two functions that carry out potential(!) data augmentations
+        "potential" because the random decision whether to augment tha data is made in the functions called by this function
+        """
+        mrcDataTorchFormated=self.filp(mrcDataTorchFormated,0.5) # the likelihood of flipping the data is 50%, as indicated by the argument
+        mrcDataTorchFormated = self.rot(mrcDataTorchFormated)
+        return mrcDataTorchFormated
+    
+    def doesNeedDenoiseAugmentation(self, fileName:str,denoiseFileName:str)->str: #randomly replace noisy file with equivalent denoised File
+        if  np.random.rand() <= self.denoise_prob and not self.training:
+            isExist = os.path.exists(denoiseFileName)
+            if isExist:
+                fileName = denoiseFileName
+        
+        return fileName
+    
+    def __getitem__(self, idx):
+        mrcDic = self.MrcFiles[idx]
+        mrcfileName = mrcDic["filename"]
+
+        if mrcDic["onlyNoise"]:
+            label = [2] #score when no data present
+        else:
+            mrcfileName = self.doesNeedDenoiseAugmentation(mrcfileName,mrcDic["denoiseFileName"]) # random chance of denoising file
+            label = [mrcDic["zEnd"]]
+
+        # Loading data
+        try:
+            with mrcfile.open(mrcfileName, mode='r+') as mrc:
+                mrcData = mrc.data #extraction of the data
+        except (ValueError, OSError) as e:
+            print(f"file {mrcfileName} is corrupted. Error : {str(e)}")
+            return None
+        mindata=np.min(mrcData)
+        for i in range(mrcData.shape[0]):
+            mrcData[i][0][0]=0.0
+        fileStd=np.std(mrcData)
+        fileMean=np.mean(mrcData)
+        mrcData = (mrcData - fileMean) / fileStd
+        mrcData = torch.from_numpy(mrcData).float()
+        label = torch.tensor(label, dtype=torch.long)
+        #data augmentation
+        
+        mrcData = self.augmentation(mrcData)
+        
+        # Add channel dimension
+        mrcData = mrcData.unsqueeze(0)
+        if self.transform:
+            mrcData = self.transform(mrcData)
+        return mrcData, label
+
+
 
 class SkippConnnection(nn.Module):
     def __init__(self, in_channels, expansion=4):  

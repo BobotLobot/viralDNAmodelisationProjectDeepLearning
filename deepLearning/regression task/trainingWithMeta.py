@@ -3,6 +3,7 @@ import time
 import matplotlib.pyplot as plt
 from torch.cuda.amp import autocast, GradScaler
 from argparse import ArgumentParser
+from model import MrcDataset1vMetaDataWithNoiseFile
 
 def save_losses_to_csv(train_losses, valid_losses, file_path='losses.csv')->None:
         with open(file_path, mode='w', newline='') as file:
@@ -28,26 +29,6 @@ def plot_training_losses(train_losses, valid_losses, save_path='training3D.png')
     plt.legend()
     plt.savefig(save_path)
     plt.close()
-
-def are_args_valid(args) -> bool:
-    """
-    checks if args are valid and returns whether that is true in bool form.
-    prints error messages
-    """
-    if args.fine_tuning and args.pretrained_model == None:
-        print("Fatal: fine tuning requested without a path specified to a pretrained model")
-        return False
-    if args.fine_tuning and not os.path.exists(args.pretrained_model):
-        print("Fatal: path to pretrained model does not exist")
-        return False
-
-    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file, args.only_noise_dir)
-    for path in paths_to_check:
-        if not os.path.exists(path):
-            print(f"Fatal: path {path} does not exist")
-            return False
-    return True
-
 
 def are_args_valid(args) -> bool:
     """
@@ -114,7 +95,7 @@ def main() -> None:
 
     torch.cuda.empty_cache() #maybe not necessary just in case
     #loading class
-    dataset = MrcDataset2vMetaData(metaFile=metafile,noiseDirectory=noisyDataDirectoryPath,noNoiseDirectory=noNoiseDataDirectoryPath) # does not exist?
+    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, onlyNoise = args.only_noise_dir) # note: copied from other model
     #spliting
     trainDataset, testDataset = random_split(dataset , [0.8, 0.2])
 
