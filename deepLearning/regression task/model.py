@@ -196,7 +196,6 @@ class Model4(nn.Module):
             nn.LeakyReLU(leakySlope),
             nn.MaxPool3d(2, 2),
             
-
             SkippConnnection(32),
             SkippConnnection(32),
 

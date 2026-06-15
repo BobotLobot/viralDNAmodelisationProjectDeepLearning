@@ -227,4 +227,6 @@ def main() -> None:
     print("end of the training")
     print(f"LOSS train {best_tloss} valid {best_vloss}")
 
-main()
+if __name__ == "__main__":
+    main()
+
