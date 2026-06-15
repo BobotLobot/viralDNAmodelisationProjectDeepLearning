@@ -170,12 +170,12 @@ def main() -> None:
         print(f"number of batch: {len(trainDataloader)}")
         for i, data in enumerate(trainDataloader,0):
             inputs, labels = data
-            inputs = inputs.float().to(device)
-            labels = labels.to(device)
+            inputs = inputs.float().to(device) # original: inputs = inputs.float().to(device)
+            labels = labels.float().to(device) # original: labels = labels.to(device) 
             optimizer.zero_grad()
             outputs = model(inputs)
             loss = loss_fn(outputs, labels)
-            loss.backward()
+            loss.backward() # crashes!
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) #gradient clipping
             optimizer.step()
             running_loss += loss.item()
