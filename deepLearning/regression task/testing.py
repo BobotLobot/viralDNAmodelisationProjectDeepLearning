@@ -1,6 +1,6 @@
 from trainingWithMeta import Model4
 from trainingWithMeta import get_args, are_args_valid
-from model import MrcDataset1vMetaDataWithNoiseFile
+from model import MrcDataset1vMetaDataWithNoiseFile, DataLoader
 
 def get_data():
     args = get_args()
@@ -18,7 +18,14 @@ def main():
     model = Model4()
     #print(model)
     data = get_data()
-    print(data[0])
+    #print(data[0])
+    trainDataloader = DataLoader(data, batch_size=3, shuffle=True)
+    for i, data in enumerate(trainDataloader,0):
+        inputs, labels = data
+        inputs = inputs.float()
+        labels = labels
+        outputs = model(inputs)
+        print("outputs:", outputs)
+        return
     
-
 main()

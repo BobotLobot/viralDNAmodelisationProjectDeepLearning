@@ -176,7 +176,7 @@ def main() -> None:
             outputs = model(inputs)
             loss = loss_fn(outputs, labels)
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)#gradiant clipping
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) #gradient clipping
             optimizer.step()
             running_loss += loss.item()
             if i == len(trainDataloader) - 1:
