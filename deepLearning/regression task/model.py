@@ -17,7 +17,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
-        self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory)
+        self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory) # fills MrcFiles
         self.denoise_prob = 0.05
         self.training = training
         self.loadOnlyNoisyFile(onlyNoise)
@@ -26,18 +26,23 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
     def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
         self.training = training
     
-    def filterMetaData(self,metaFile,NoisyDirectory,noNoiseDirectory):
-        mrcDic={
+    def filterMetaData(self,metaFile : str,NoisyDirectory : str, noNoiseDirectory : str) -> None:
+        """
+        takes the data files and inputs the properties of the noisy files into the MrcFiles property of self as a list of dicts.
+        the indexes of the MrcFiles dicts are matched by the "mrcDic" dict below.
+        the non-nosiy files are also included as "deNoiseFileName".
+        """
+        mrcDic={ # properties of each mrc file
             "filename": None,
             "radius": None,
             "pitch": None,
-            "dataPoints": None,
+            "dataPoints": None, # number of data points in the file
             "zEnd": None,
             "denoiseFileName": None,
             "onlyNoise" : False,
         }
         with open(metaFile, mode="r+") as metaData:
-            files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)]
+            files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)] # get list of filenames of noisy files
             csv_reader = csv.DictReader(metaData)
             totaleFind=0
             
@@ -49,7 +54,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
                         mrcDic["radius"]=float(row["radius"])
                         mrcDic["pitch"]=float(row["pitch"])
                         mrcDic["dataPoints"]=int(row["numberOfPointBox"])
-                        if mrcDic["dataPoints"]<500:
+                        if mrcDic["dataPoints"] < 500:
                             mrcDic["onlyNoise"] = True
                         mrcDic["zEnd"]=row["zEndpoint"] # will often be None
                         if mrcDic["zEnd"]=="None":
@@ -59,7 +64,12 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
                         mrcDic["denoiseFileName"]=os.path.join(noNoiseDirectory,row["Box_file_name_No_Noise"])
                         files.remove(file)
                         self.MrcFiles.append(mrcDic.copy())
-    def loadOnlyNoisyFile(self,onlyNoiseDirectory):
+
+    def loadOnlyNoisyFile(self,onlyNoiseDirectory : str) -> None:
+        """
+        appends data about onlynoise files to MrcDic.
+        the only field in the dict entries inserted by this function that are not None are the filenames.
+        """
         mrcDic={
             "filename": None,
             "radius": None,
@@ -93,7 +103,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         The decision of whether or not to rotate the data is made in this function
         Rotation is also carried out here, returns data after potential(!) rotation
         """
-        turnNumber=np.random.randint(4) # 25% chance of rotation (also 25% that nothing happen--> case 0 )
+        turnNumber=np.random.randint(4) # 25% chance of rotation (also 25% that nothing happens --> case 0)
         axe= [0,1]
         torch.rot90(mrcDataTorch, k=turnNumber, dims=axe)
         return mrcDataTorch
