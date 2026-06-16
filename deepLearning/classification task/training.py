@@ -26,7 +26,11 @@ def accuracy_fn(label, prediction):
     return acc
 
 def calculate_accuracy(outputs, labels):
-    _, preds = torch.max(outputs, dim=1)
+    """
+    takes model outputs and correct labels
+    returns tuple (number of correct predictions, total number of predictions)
+    """
+    _, preds = torch.max(outputs, dim=1) # prediction is made here, notably without softmax.
     correct = torch.sum(preds == labels).item()
     total = labels.size(0)
     return correct, total
