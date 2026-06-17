@@ -61,6 +61,7 @@ def get_args():
     parser.add_argument("--accuracy_output", "-ao", type=str, default="training_accuracy.png")
     parser.add_argument("--loss_output", "-lo", type=str, default="training_loss.png")
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
+    parser.add_argument("--verbose", "-v", action="store_true")
 
     return parser.parse_args()
 
@@ -95,7 +96,7 @@ def main() -> None:
 
     torch.cuda.empty_cache() #maybe not necessary just in case
     #loading class
-    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, onlyNoise = args.only_noise_dir) # note: copied from other model
+    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, onlyNoise = args.only_noise_dir, verbose = args.verbose) # note: copied from other model
     #spliting
     trainDataset, testDataset = random_split(dataset , [0.8, 0.2])
 

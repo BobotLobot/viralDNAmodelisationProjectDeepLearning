@@ -13,11 +13,11 @@ import random
 leakySlope=0.2
 
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, onlyNoise, training=False, transform=None):
+    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, onlyNoise, training=False, transform=None, verbose=False):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
-        self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory) # fills MrcFiles
+        self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory, verbose) # fills MrcFiles
         self.denoise_prob = 0.05
         self.training = training
         self.loadOnlyNoisyFile(onlyNoise)
@@ -25,7 +25,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
     def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
         self.training = training
     
-    def filterMetaData(self,metaFile : str,NoisyDirectory : str, noNoiseDirectory : str) -> None:
+    def filterMetaData(self,metaFile : str,NoisyDirectory : str, noNoiseDirectory : str, verbose : bool) -> None:
         """
         takes the noisy and non-noisy data files and inputs the properties of the noisy files into the MrcFiles property of self as a list of dicts.
         the indexes of the MrcFiles dicts are matched by the "mrcDic" dict below.
@@ -49,7 +49,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
             
             for row in csv_reader:
                 for file in files:
-                    if row["Box_file_name_With_Noise"] in files:
+                    if row["Box_file_name_With_Noise"] in files: # searches all file names to see if file exists matching file name in row
                         totaleFind+=1
                         mrcDic["filename"]=(os.path.join(NoisyDirectory,row["Box_file_name_With_Noise"]))
                         mrcDic["radius"]=float(row["radius"])
@@ -65,7 +65,8 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
                         mrcDic["denoiseFileName"]=os.path.join(noNoiseDirectory,row["Box_file_name_No_Noise"])
                         files.remove(file)
                         self.MrcFiles.append(mrcDic.copy())
-                        print(f"file appended. a total of {totaleFind} have been found and appended")
+                        if verbose:
+                            print(f"file with data appended to MrcFiles. a total of {totaleFind} files with data have been found and appended")
             if totaleFind == 0:
                 print("Warning: no noisy files were matched with metadata in metadata file")
 
