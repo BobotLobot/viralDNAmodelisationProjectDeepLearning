@@ -13,7 +13,7 @@ import random
 leakySlope=0.2
 
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile, noiseDirectory,noNoiseDirectory,onlyNoise,training= False, transform=None):
+    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, onlyNoise, training=False, transform=None):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
@@ -22,13 +22,12 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         self.training = training
         self.loadOnlyNoisyFile(onlyNoise)
         
-
     def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
         self.training = training
     
     def filterMetaData(self,metaFile : str,NoisyDirectory : str, noNoiseDirectory : str) -> None:
         """
-        takes the data files and inputs the properties of the noisy files into the MrcFiles property of self as a list of dicts.
+        takes the noisy and non-noisy data files and inputs the properties of the noisy files into the MrcFiles property of self as a list of dicts.
         the indexes of the MrcFiles dicts are matched by the "mrcDic" dict below.
         the non-nosiy files are also included as "deNoiseFileName".
         """
@@ -43,6 +42,8 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         }
         with open(metaFile, mode="r+") as metaData:
             files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)] # get list of filenames of noisy files
+            if len(files) == 0:
+                print("Warning: the specified noisy directory is empty!")
             csv_reader = csv.DictReader(metaData)
             totaleFind=0
             
@@ -64,6 +65,9 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
                         mrcDic["denoiseFileName"]=os.path.join(noNoiseDirectory,row["Box_file_name_No_Noise"])
                         files.remove(file)
                         self.MrcFiles.append(mrcDic.copy())
+                        print(f"file appended. a total of {totaleFind} have been found and appended")
+            if totaleFind == 0:
+                print("Warning: no noisy files were matched with metadata in metadata file")
 
     def loadOnlyNoisyFile(self,onlyNoiseDirectory : str) -> None:
         """
@@ -88,13 +92,13 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
             else:
                 continue
         return
+        
     def __len__(self):
         return len(self.MrcFiles)
 
     def filp(self,mrcDataTorch:torch,flip_prob:float)->torch:
         if np.random.rand() < flip_prob:
             axes = [0, 2]#z axis
-            
             mrcDataTorch = torch.flip(mrcDataTorch, dims=[axes[np.random.randint(len(axes))]])
         return mrcDataTorch
 
@@ -122,20 +126,24 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
             isExist = os.path.exists(denoiseFileName)
             if isExist:
                 fileName = denoiseFileName
-        
         return fileName
     
     def __getitem__(self, idx):
+        """
+        returns (Tensor representing the intensity map from the file, the correct label of the file)
+        idx is the index of the MrcFile stored in the dataset to get
+        """
         mrcDic = self.MrcFiles[idx]
         mrcfileName = mrcDic["filename"]
 
+        # get label
         if mrcDic["onlyNoise"]:
             label = [2] #score when no data present
         else:
             mrcfileName = self.doesNeedDenoiseAugmentation(mrcfileName,mrcDic["denoiseFileName"]) # random chance of denoising file
             label = [mrcDic["zEnd"]]
 
-        # Loading data
+        # load data
         try:
             with mrcfile.open(mrcfileName, mode='r+') as mrc:
                 mrcData = mrc.data #extraction of the data
@@ -159,8 +167,6 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         if self.transform:
             mrcData = self.transform(mrcData)
         return mrcData, label
-
-
 
 class SkippConnnection(nn.Module):
     def __init__(self, in_channels, expansion=4):  
@@ -193,7 +199,6 @@ class SkippConnnection(nn.Module):
     def forward(self, x):
         return self.block(x) + self.shortcut(x)
     
-
 class Model4(nn.Module):
     def __init__(self, in_channels=1, num_classes=2):
         super().__init__()

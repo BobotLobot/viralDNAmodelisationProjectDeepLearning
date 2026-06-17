@@ -170,12 +170,15 @@ def main() -> None:
         print(f"number of batch: {len(trainDataloader)}")
         for i, data in enumerate(trainDataloader,0):
             inputs, labels = data
+            #print("inputs:", inputs[0])
+            #print("labels:", labels[0])
+            #return
             inputs = inputs.float().to(device) # original: inputs = inputs.float().to(device)
             labels = labels.float().to(device) # original: labels = labels.to(device) 
             optimizer.zero_grad()
             outputs = model(inputs)
-            loss = loss_fn(outputs, labels)
-            loss.backward() # crashes!
+            loss = loss_fn(outputs, labels) # MSE between outputs and labels
+            loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) #gradient clipping
             optimizer.step()
             running_loss += loss.item()
@@ -185,8 +188,8 @@ def main() -> None:
                 trainLosess.append(last_loss)
                 print(f"Epoch {epoch}, loss: {last_loss:.4f}")
                 running_loss = 0.0
-        print(f"LR actuel: {optimizer.param_groups[0]['lr']}")
-        print("evaluating   ")
+        print(f"LR: {optimizer.param_groups[0]['lr']}")
+        print("evaluating")
         model.eval()
         vrunning_loss = 0.
         predictions = []
