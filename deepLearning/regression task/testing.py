@@ -109,7 +109,7 @@ def benchmark(model, dataset, verbose, out_path, num_predictions):
     if verbose:
         print("writing predictions to file:", out_path)
     with open(out_path, "w") as f:
-        f.write("pred_radius,pred_pitch,corrrct_radius,correct_pitch\n")
+        f.write("pred_radius,pred_pitch,correct_radius,correct_pitch\n")
         for i in range(len(preds)):
             f.write(f"{pred_radii[i]},{pred_pitches[i]},{correct_radii[i]},{correct_pitches[i]}\n")
 
