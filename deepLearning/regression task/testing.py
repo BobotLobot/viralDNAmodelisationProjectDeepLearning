@@ -1,15 +1,14 @@
 import torch
 import numpy as np
 from trainingWithMeta import Model4
-from trainingWithMeta import get_args, are_args_valid
 from model import MrcDataset1vMetaDataWithNoiseFile, DataLoader
 import mrcfile
 from torchvision.transforms.functional import get_dimensions
 import matplotlib.pyplot as plt
+from argparse import ArgumentParser
+import os.path
 
-PREDICTION_BATCH_SIZE = 15
-DATA_SIZE = 300
-OUT_PATH = "./preds_out.csv"
+PREDICTION_BATCH_SIZE = 20
 
 def get_label(mrcdic : dict) -> long:
     if mrcdic["onlyNoise"]:
@@ -18,15 +17,12 @@ def get_label(mrcdic : dict) -> long:
         label = mrcdic["zEnd"]
     return label
 
-def get_data():
-    args = get_args()
-    if not are_args_valid(args):
-        raise ValueError()
-
-    # load data from args
+def get_data(args : argparse.Namespace):
     print("loading dataset...")
-    metafile = args.meta_file
-    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=args.noisy_data_dir, noNoiseDirectory=args.not_noisy_data_dir, onlyNoise = args.only_noise_dir) # note: copied from other model
+    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=args.meta_file,
+    noiseDirectory=args.noisy_data_dir,
+    noNoiseDirectory=args.not_noisy_data_dir,
+    onlyNoise = args.only_noise_dir) # note: copied from other model
     return dataset
 
 def get_metadata(dataset, num_datapoints : int) -> list:
@@ -74,8 +70,8 @@ def print_test(data, model) -> None:
         print("outputs:", get_dimensions(outputs))
         return # if not included, prints once per batch until all data is used
 
-def benchmark(model, dataset, verbose):
-    metadata = get_metadata(dataset, DATA_SIZE)
+def benchmark(model, dataset, verbose, out_path, num_predictions):
+    metadata = get_metadata(dataset, num_predictions)
     maps = []
     correct_radii = []
     correct_pitches = []
@@ -111,20 +107,55 @@ def benchmark(model, dataset, verbose):
         pred_pitches.append(pred[1])
 
     if verbose:
-        print("writing predictions to file:", OUT_PATH)
-    with open(OUT_PATH, "w") as f:
+        print("writing predictions to file:", out_path)
+    with open(out_path, "w") as f:
         f.write("pred_radius,pred_pitch,corrrct_radius,correct_pitch\n")
         for i in range(len(preds)):
             f.write(f"{pred_radii[i]},{pred_pitches[i]},{correct_radii[i]},{correct_pitches[i]}\n")
 
+def get_args() -> argparse.Namespace:
+    parser = ArgumentParser()
+    parser.add_argument("--fine_tuning", "-ft", action="store_true")
+    parser.add_argument("--log_path", "-l", type=str, required=False, default='training_log.log')
+    parser.add_argument("--pretrained_model", "-pm", required=True)
+    parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
+    parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
+    parser.add_argument("--meta_file", "-m", type=str, required=True)
+    parser.add_argument("--only_noise_dir", "-on", type=str, required=True)
+    parser.add_argument("--verbose", "-v", action="store_true")
     
+    parser.add_argument("--output_path", "-o", type=str, default="./preds_out.csv")
+    parser.add_argument("--num_predictions", "-n", type=int, default=300)
+
+    return parser.parse_args()
+
+
+
+def validate_args(args : argparse.Namespace) -> None:
+    """
+    checks if args are valid and returns whether that is true in bool form.
+    prints error messages
+    """
+    if args.fine_tuning and args.pretrained_model == None:
+        print("Fatal: fine tuning requested without a path specified to a pretrained model")
+        return False
+    if args.fine_tuning and not os.path.exists(args.pretrained_model):
+        print("Fatal: path to pretrained model does not exist")
+        return False
+
+    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file, args.only_noise_dir, args.pretrained_model)
+    for path in paths_to_check:
+        if not os.path.exists(path):
+            raise ValueError(f"path {path} does not exist")
 def main():
-    pretrained_model_path = "./out/best_model.pth"
+    args = get_args()
+    validate_args(args)
+    
     #if verbose:
     print("loading model...")
     model = Model4()
-    model.load_state_dict(torch.load(pretrained_model_path))
-    data = get_data()
+    model.load_state_dict(torch.load(args.pretrained_model))
+    data = get_data(args)
     #print(model)
     #metadata = get_metadata(data, 2)
     #print("metadata:", metadata)
@@ -144,8 +175,6 @@ def main():
     #        print(f"not only noise found!")
     #        break
     #print(data[0])
-    benchmark(model, data, True)
-
-    
+    benchmark(model, data, args.verbose, args.output_path, args.num_predictions)
 
 main()
