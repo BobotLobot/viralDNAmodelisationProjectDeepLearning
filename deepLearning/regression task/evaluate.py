@@ -23,6 +23,6 @@ def main():
     fig, ax = plt.subplots()
     ax.plot(pred_radii, corr_radii, ".-")
     ax.plot(pred_pitches, corr_pitches, ".-")
-    plt.savefig(args.output_file)
+    fig.savefig(args.output_file)
     
 main()
