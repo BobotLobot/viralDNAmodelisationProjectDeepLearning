@@ -57,7 +57,6 @@ def are_args_valid(args) -> bool:
 def get_args():
     parser = ArgumentParser()
     parser.add_argument("--fine_tuning", "-ft", action="store_true")
-    parser.add_argument("--log_path", "-l", type=str, required=False, default='training_log.log')
     parser.add_argument("--pretrained_model", "-pm", type=str)
     parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
     parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
@@ -74,12 +73,6 @@ def main():
     args = get_args()
     if not are_args_valid(args):
         return
-    
-    # Configure logging
-    logging.basicConfig(filename=args.log_path, level=logging.INFO, format='%(asctime)s - %(message)s')
-    
-    # Replace all print statements with logging.info
-    # print = logging.info
     
     #set randomness
     seed = 42
@@ -119,7 +112,6 @@ def main():
     trainDataset, testDataset = random_split(dataset , [0.8, 0.2])
 
     #no augmentation/denoising
-
     print(f"number of data points in training: {len(trainDataset)}")
     print(f"number of data points in testing: {len(testDataset)}")
     #data loader
@@ -189,8 +181,8 @@ def main():
         running_total = 0
         timeEpoch = time.time()
         print(f"Epoch {epoch}")
-        model.train(True)
         print(f"number of batch: {len(trainDataloader)}")
+        model.train(True)
         for i, data in enumerate(trainDataloader,0):
             inputs, labels = data
             inputs = inputs.to(device)
@@ -225,7 +217,7 @@ def main():
                 f"Train Loss: {last_loss:.4f} | "
                 f"Acc: {epoch_acc:.2%} | "
                 f"LR: {optimizer.param_groups[0]['lr']}")
-                
+
         print("evaluating model")
         model.eval()
         vrunning_loss = 0.
@@ -287,8 +279,6 @@ def main():
         plt.savefig('accuracy.png')
         plt.close()
 
-
-        # save_losses_to_csv(trainLosess, validLosess)
         print(f"Time for training over {epoch} epoch: {time.time()-timeTraining}")
     save_losses_to_csv(trainLosess, validLosess)
     save_accuracy(vrunning_accuracy,running_train_accuracy)
