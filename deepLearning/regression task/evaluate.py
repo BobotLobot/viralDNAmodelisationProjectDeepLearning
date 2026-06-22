@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def main():
     parser = ArgumentParser()
     parser.add_argument("-i", "--input_csv_file", required=True)
-    parser.add_argument("-o", "--output_file", default="evaluation_fig.png")
+    parser.add_argument("-o", "--output_file_prefix", default="evaluation_fig")
     args = parser.parse_args()
     
     pred_radii = []
@@ -20,9 +20,14 @@ def main():
             corr_pitches.append(row["correct_pitch"])
             corr_radii.append(row["correct_radius"])
 
-    fig, ax = plt.subplots()
-    ax.plot(pred_radii, corr_radii, ".-")
-    ax.plot(pred_pitches, corr_pitches, ".-")
-    fig.savefig(args.output_file)
+    plt.plot(pred_radii, corr_radii, ".-")
+    plt.xlabel("predicted radius")
+    plt.ylabel("correct radius")
+    plt.savefig(args.output_file_prefix+"-radii.png")
+
+    plt.plot(pred_pitches, corr_pitches, ".-")
+    plt.xlabel("predicted pitch")
+    plt.ylabel("correct pitch")
+    plt.savefig(args.output_file_prefix+"-pitches.png")
     
 main()
