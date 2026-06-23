@@ -11,16 +11,16 @@ import csv
 import random
 
 leakySlope=0.2
+MATCHED_DATAPOINTS_PER_PRINT = 5
 
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, onlyNoise, training=False, transform=None, verbose=False):
+    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, training=False, transform=None, verbose=False):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
         self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory, verbose) # fills MrcFiles
         self.denoise_prob = 0.05
         self.training = training
-        self.loadOnlyNoisyFile(onlyNoise)
         
     def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
         self.training = training
@@ -43,7 +43,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         with open(metaFile, mode="r+") as metaData:
             files = [os.path.basename(file) for file in os.listdir(NoisyDirectory)] # get list of filenames of noisy files
             if len(files) == 0:
-                print("Warning: the specified noisy directory is empty!")
+                print("Warning: the specified noisy directory is empty")
             csv_reader = csv.DictReader(metaData)
             totaleFind=0
             
@@ -65,35 +65,11 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
                         mrcDic["denoiseFileName"]=os.path.join(noNoiseDirectory,row["Box_file_name_No_Noise"])
                         files.remove(file)
                         self.MrcFiles.append(mrcDic.copy())
-                        if verbose:
-                            print(f"file with data appended to MrcFiles. a total of {totaleFind} files with data have been found and appended")
+                        if verbose and totaleFind % MATCHED_DATAPOINTS_PER_PRINT == 0:
+                            print(f"A total of {totaleFind} files with data have been found and appended to MrcFiles structure of dataset.")
             if totaleFind == 0:
                 print("Warning: no noisy files were matched with metadata in metadata file")
 
-    def loadOnlyNoisyFile(self,onlyNoiseDirectory : str) -> None:
-        """
-        appends data about onlynoise files to MrcDic.
-        the only field in the dict entries inserted by this function that are not None are the filenames.
-        """
-        mrcDic={
-            "filename": None,
-            "radius": None,
-            "pitch": None,
-            "dataPoints": None,
-            "zEnd": None,
-            "denoiseFileName": None,
-            "onlyNoise" : True,
-        }
-        files=os.listdir(onlyNoiseDirectory)
-        random.shuffle(files)
-        for filename in files[0:1000]:
-            if filename.endswith(".mrc"):
-                mrcDic["filename"]=os.path.join(onlyNoiseDirectory,filename)
-                self.MrcFiles.append(mrcDic.copy())
-            else:
-                continue
-        return
-        
     def __len__(self):
         return len(self.MrcFiles)
 
@@ -138,12 +114,8 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         mrcfileName = mrcDic["filename"]
 
         # get label
-        if mrcDic["onlyNoise"]:
-            label = [2] #score when no data present
-        else:
-            mrcfileName = self.doesNeedDenoiseAugmentation(mrcfileName,mrcDic["denoiseFileName"]) # random chance of denoising file
-            label = [mrcDic["zEnd"]]
-
+        label = (mrcDic["radius"], mrcDic["pitch"])
+        
         # load data
         try:
             with mrcfile.open(mrcfileName, mode='r+') as mrc:
@@ -158,7 +130,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         fileMean=np.mean(mrcData)
         mrcData = (mrcData - fileMean) / fileStd
         mrcData = torch.from_numpy(mrcData).float()
-        label = torch.tensor(label, dtype=torch.long)
+        label = torch.tensor(label, dtype=torch.float)
         #data augmentation
         
         mrcData = self.augmentation(mrcData)

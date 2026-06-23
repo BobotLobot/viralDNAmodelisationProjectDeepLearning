@@ -42,7 +42,7 @@ def are_args_valid(args) -> bool:
         print("Fatal: path to pretrained model does not exist")
         return False
 
-    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file, args.only_noise_dir)
+    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file)
     for path in paths_to_check:
         if not os.path.exists(path):
             print(f"Fatal: path {path} does not exist")
@@ -57,10 +57,10 @@ def get_args():
     parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
     parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
     parser.add_argument("--meta_file", "-m", type=str, required=True)
-    parser.add_argument("--only_noise_dir", "-on", type=str, required=True)
     parser.add_argument("--accuracy_output", "-ao", type=str, default="training_accuracy.png")
     parser.add_argument("--loss_output", "-lo", type=str, default="training_loss.png")
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
+    parser.add_argument("--patience", "-p", type=int, default=40)
     parser.add_argument("--verbose", "-v", action="store_true")
 
     return parser.parse_args()
@@ -81,7 +81,7 @@ def main() -> None:
     deviceName= torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
     print(f"Current cuda device: {deviceName}")
 
-    #--------------------------------------Fine Tunnig
+    #--------------------------------------Fine-tuning
     fineTunning = args.fine_tuning
     pretrained_model_path = args.pretrained_model
 
@@ -96,7 +96,7 @@ def main() -> None:
 
     torch.cuda.empty_cache() #maybe not necessary just in case
     #loading class
-    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, onlyNoise = args.only_noise_dir, verbose = args.verbose) # note: copied from other model
+    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, verbose = args.verbose) # note: copied from other model
     #spliting
     trainDataset, testDataset = random_split(dataset , [0.8, 0.2])
 
@@ -158,7 +158,6 @@ def main() -> None:
     best_tloss = 1_000_000.
     trainLosess=[]
     validLosess=[]
-    patience = 200
     waited=0
 
     #--------------------------------------Training
@@ -214,7 +213,7 @@ def main() -> None:
             torch.save(model.state_dict(), args.model_output)
         else:
             waited+=1
-            if waited > patience:
+            if waited > args.patience:
                 print(f"LOSS train {last_loss} valid {avg_vloss}")
                 print(f"Time for epoch {epoch}: {time.time()-timeEpoch}")
                 print("Early stopping")

@@ -10,19 +10,12 @@ import os.path
 
 PREDICTION_BATCH_SIZE = 20
 
-def get_label(mrcdic : dict) -> long:
-    if mrcdic["onlyNoise"]:
-        label = 2 #score when no data present
-    else:
-        label = mrcdic["zEnd"]
-    return label
-
 def get_data(args : argparse.Namespace):
     print("loading dataset...")
     dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=args.meta_file,
     noiseDirectory=args.noisy_data_dir,
     noNoiseDirectory=args.not_noisy_data_dir,
-    onlyNoise = args.only_noise_dir) # note: copied from other model
+    verbose = args.verbose)
     return dataset
 
 def get_metadata(dataset, num_datapoints : int) -> list:
@@ -46,7 +39,6 @@ def get_map(filename, dataset):
     fileMean=np.mean(mrcData)
     mrcData = (mrcData - fileMean) / fileStd
     mrcData = torch.from_numpy(mrcData).float()
-    #label = torch.tensor(label, dtype=torch.long)
     #data augmentation
     
     mrcData = dataset.augmentation(mrcData)
@@ -100,8 +92,6 @@ def benchmark(model, dataset, verbose, out_path, num_predictions):
     
     pred_radii = []
     pred_pitches = []
-    if verbose:
-        print("constructing plots...")
     for pred in preds:
         pred_radii.append(pred[0])
         pred_pitches.append(pred[1])
@@ -125,7 +115,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--verbose", "-v", action="store_true")
     
     parser.add_argument("--output_path", "-o", type=str, default="./preds_out.csv")
-    parser.add_argument("--num_predictions", "-n", type=int, default=300)
+    parser.add_argument("--num_predictions", "-n", type=int, default=100)
 
     return parser.parse_args()
 
@@ -151,30 +141,11 @@ def main():
     args = get_args()
     validate_args(args)
     
-    #if verbose:
     print("loading model...")
     model = Model4()
     model.load_state_dict(torch.load(args.pretrained_model))
     data = get_data(args)
-    #print(model)
-    #metadata = get_metadata(data, 2)
-    #print("metadata:", metadata)
-    #print_test(data, model)
 
-    #maps = torch.tensor(np.array([get_map(metadata[0]["filename"], data), get_map(metadata[1]["filename"], data)]))
-    #print("maps type:", type(maps))
-    #print("maps dim:", get_dimensions(maps))
-    #print("maps len:", len(maps))
-    
-    #print("predictions for maps:", model(maps))
-    #print("correct radiuses:", metadata[0]["radius"], metadata[1]["radius"])
-    #print("correct pitches:", metadata[0]["pitch"], metadata[1]["pitch"])
-    #print("correct labels of analysed files:", get_label(metadata[0]), get_label(metadata[1]))
-    #for mrcdic in metadata:
-    #    if not mrcdic["onlyNoise"]:
-    #        print(f"not only noise found!")
-    #        break
-    #print(data[0])
     benchmark(model, data, args.verbose, args.output_path, args.num_predictions)
 
 main()
