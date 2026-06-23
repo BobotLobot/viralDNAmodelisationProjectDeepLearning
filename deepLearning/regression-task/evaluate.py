@@ -23,13 +23,13 @@ def main():
             corr_pitches.append(float(row["correct_pitch"]))
             corr_radii.append(float(row["correct_radius"]))
 
-    plt.plot(pred_radii, corr_radii, marker='.', linestyle="-")
+    plt.plot(pred_radii, corr_radii, marker='.', linestyle='')
     plt.xlabel("predicted radius")
     plt.ylabel("correct radius")
     plt.xticks(np.linspace(np.min(pred_radii), np.max(pred_radii), NUMBER_OF_TICKS))
     plt.savefig(args.output_file_prefix+"-radii.png")
 
-    plt.plot(pred_pitches, corr_pitches, marker='.', linestyle="-")
+    plt.plot(pred_pitches, corr_pitches, marker='.', linestyle='')
     plt.xlabel("predicted pitch")
     plt.ylabel("correct pitch")
     plt.xticks(np.linspace(np.min(pred_pitches), np.max(pred_pitches), NUMBER_OF_TICKS))
