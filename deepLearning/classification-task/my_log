@@ -1,0 +1,1023 @@
+Current cuda device: CPU
+number of data points in training: 400
+number of data points in testing: 99
+Input shape: torch.Size([200, 1, 35, 35, 35])
+Label shape: torch.Size([200, 1])
+Start training
+Epoch 0
+number of batch: 2
+------------------------------------------------
+Epoch 001 | Train Loss: 1.1789 | Acc: 31.25% | LR: 0.0001
+evaluating model
+Validation  | Loss: 1.1302 | Acc: 41.41%
+Time for epoch 0: 72.94559502601624
+Time for training over 0 epoch: 73.16621255874634
+Epoch 1
+number of batch: 2
+------------------------------------------------
+Epoch 002 | Train Loss: 0.8848 | Acc: 64.25% | LR: 0.00010495000000000166
+evaluating model
+Validation  | Loss: 1.1090 | Acc: 41.41%
+Time for epoch 1: 70.75915217399597
+Time for training over 1 epoch: 144.20400595664978
+Epoch 2
+number of batch: 2
+------------------------------------------------
+Epoch 003 | Train Loss: 0.7066 | Acc: 82.50% | LR: 0.00010989999999999892
+evaluating model
+Validation  | Loss: 1.0335 | Acc: 42.42%
+Time for epoch 2: 70.95759201049805
+Time for training over 2 epoch: 215.44176840782166
+Epoch 3
+number of batch: 2
+------------------------------------------------
+Epoch 004 | Train Loss: 0.5460 | Acc: 89.25% | LR: 0.00011485000000000057
+evaluating model
+Validation  | Loss: 0.9241 | Acc: 80.81%
+Time for epoch 3: 70.0710027217865
+Time for training over 3 epoch: 285.7805964946747
+Epoch 4
+number of batch: 2
+------------------------------------------------
+Epoch 005 | Train Loss: 0.4208 | Acc: 92.75% | LR: 0.00011979999999999783
+evaluating model
+Validation  | Loss: 0.8511 | Acc: 91.92%
+Time for epoch 4: 70.09787797927856
+Time for training over 4 epoch: 356.18269419670105
+Epoch 5
+number of batch: 2
+------------------------------------------------
+Epoch 006 | Train Loss: 0.3358 | Acc: 95.00% | LR: 0.00012474999999999948
+evaluating model
+Validation  | Loss: 0.8445 | Acc: 60.61%
+Time for epoch 5: 70.40333771705627
+Time for training over 5 epoch: 426.8410153388977
+Epoch 6
+number of batch: 2
+------------------------------------------------
+Epoch 007 | Train Loss: 0.2992 | Acc: 94.75% | LR: 0.00012970000000000115
+evaluating model
+Validation  | Loss: 0.9356 | Acc: 45.45%
+Time for epoch 6: 70.03983497619629
+Time for training over 6 epoch: 497.1032452583313
+Epoch 7
+number of batch: 2
+------------------------------------------------
+Epoch 008 | Train Loss: 0.2640 | Acc: 94.50% | LR: 0.0001346499999999984
+evaluating model
+Validation  | Loss: 1.1904 | Acc: 40.40%
+Time for epoch 7: 70.32386708259583
+Time for training over 7 epoch: 567.6632616519928
+Epoch 8
+number of batch: 2
+------------------------------------------------
+Epoch 009 | Train Loss: 0.2363 | Acc: 95.25% | LR: 0.00013960000000000003
+evaluating model
+Validation  | Loss: 1.3080 | Acc: 41.41%
+Time for epoch 8: 69.95309686660767
+Time for training over 8 epoch: 637.8766462802887
+Epoch 9
+number of batch: 2
+------------------------------------------------
+Epoch 010 | Train Loss: 0.2260 | Acc: 96.00% | LR: 0.0001445500000000017
+evaluating model
+Validation  | Loss: 1.2712 | Acc: 41.41%
+Time for epoch 9: 70.03482222557068
+Time for training over 9 epoch: 708.1336376667023
+Epoch 10
+number of batch: 2
+------------------------------------------------
+Epoch 011 | Train Loss: 0.2180 | Acc: 96.00% | LR: 0.00014949999999999894
+evaluating model
+Validation  | Loss: 0.9597 | Acc: 49.49%
+Time for epoch 10: 69.75413012504578
+Time for training over 10 epoch: 778.110675573349
+Epoch 11
+number of batch: 2
+------------------------------------------------
+Epoch 012 | Train Loss: 0.1825 | Acc: 96.25% | LR: 0.0001544500000000006
+evaluating model
+Validation  | Loss: 0.7876 | Acc: 52.53%
+Time for epoch 11: 69.66691517829895
+Time for training over 11 epoch: 848.0433130264282
+Epoch 12
+number of batch: 2
+------------------------------------------------
+Epoch 013 | Train Loss: 0.1798 | Acc: 96.00% | LR: 0.00015939999999999786
+evaluating model
+Validation  | Loss: 0.6999 | Acc: 61.62%
+Time for epoch 12: 69.8053252696991
+Time for training over 12 epoch: 918.1259396076202
+Epoch 13
+number of batch: 2
+------------------------------------------------
+Epoch 014 | Train Loss: 0.1708 | Acc: 96.00% | LR: 0.00016434999999999952
+evaluating model
+Validation  | Loss: 0.6528 | Acc: 69.70%
+Time for epoch 13: 70.3511438369751
+Time for training over 13 epoch: 988.7039859294891
+Epoch 14
+number of batch: 2
+------------------------------------------------
+Epoch 015 | Train Loss: 0.1727 | Acc: 96.00% | LR: 0.0001693000000000012
+evaluating model
+Validation  | Loss: 0.6161 | Acc: 73.74%
+Time for epoch 14: 70.67375063896179
+Time for training over 14 epoch: 1059.6109614372253
+Epoch 15
+number of batch: 2
+------------------------------------------------
+Epoch 016 | Train Loss: 0.1484 | Acc: 96.00% | LR: 0.0001742499999999984
+evaluating model
+Validation  | Loss: 0.6730 | Acc: 66.67%
+Time for epoch 15: 70.21823835372925
+Time for training over 15 epoch: 1130.0682277679443
+Epoch 16
+number of batch: 2
+------------------------------------------------
+Epoch 017 | Train Loss: 0.1460 | Acc: 96.00% | LR: 0.00017920000000000007
+evaluating model
+Validation  | Loss: 0.6558 | Acc: 74.75%
+Time for epoch 16: 70.22181105613708
+Time for training over 16 epoch: 1200.5262768268585
+Epoch 17
+number of batch: 2
+------------------------------------------------
+Epoch 018 | Train Loss: 0.1510 | Acc: 96.00% | LR: 0.00018415000000000174
+evaluating model
+Validation  | Loss: 0.6251 | Acc: 73.74%
+Time for epoch 17: 70.35797762870789
+Time for training over 17 epoch: 1271.1195561885834
+Epoch 18
+number of batch: 2
+------------------------------------------------
+Epoch 019 | Train Loss: 0.1518 | Acc: 95.75% | LR: 0.00018909999999999899
+evaluating model
+Validation  | Loss: 0.4598 | Acc: 80.81%
+Time for epoch 18: 70.66952419281006
+Time for training over 18 epoch: 1342.0736570358276
+Epoch 19
+number of batch: 2
+------------------------------------------------
+Epoch 020 | Train Loss: 0.1397 | Acc: 95.75% | LR: 0.00019405000000000065
+evaluating model
+Validation  | Loss: 0.3426 | Acc: 88.89%
+Time for epoch 19: 70.86510109901428
+Time for training over 19 epoch: 1413.2164809703827
+Epoch 20
+number of batch: 2
+------------------------------------------------
+Epoch 021 | Train Loss: 0.1293 | Acc: 96.25% | LR: 0.0001989999999999979
+evaluating model
+Validation  | Loss: 0.2228 | Acc: 94.95%
+Time for epoch 20: 70.79018473625183
+Time for training over 20 epoch: 1484.3007590770721
+Epoch 21
+number of batch: 2
+------------------------------------------------
+Epoch 022 | Train Loss: 0.1419 | Acc: 95.75% | LR: 0.00020394999999999956
+evaluating model
+Validation  | Loss: 0.1408 | Acc: 97.98%
+Time for epoch 21: 70.52467918395996
+Time for training over 21 epoch: 1555.0456132888794
+Epoch 22
+number of batch: 2
+------------------------------------------------
+Epoch 023 | Train Loss: 0.1188 | Acc: 96.00% | LR: 0.00020890000000000123
+evaluating model
+Validation  | Loss: 0.1263 | Acc: 97.98%
+Time for epoch 22: 70.70976424217224
+Time for training over 22 epoch: 1626.0153868198395
+Epoch 23
+number of batch: 2
+------------------------------------------------
+Epoch 024 | Train Loss: 0.1135 | Acc: 96.00% | LR: 0.00021384999999999845
+evaluating model
+Validation  | Loss: 0.1156 | Acc: 97.98%
+Time for epoch 23: 70.77757096290588
+Time for training over 23 epoch: 1697.062628030777
+Epoch 24
+number of batch: 2
+------------------------------------------------
+Epoch 025 | Train Loss: 0.1183 | Acc: 96.00% | LR: 0.00021880000000000011
+evaluating model
+Validation  | Loss: 0.1055 | Acc: 97.98%
+Time for epoch 24: 70.62832880020142
+Time for training over 24 epoch: 1767.9587728977203
+Epoch 25
+number of batch: 2
+------------------------------------------------
+Epoch 026 | Train Loss: 0.1093 | Acc: 96.25% | LR: 0.00022375000000000178
+evaluating model
+Validation  | Loss: 0.0930 | Acc: 97.98%
+Time for epoch 25: 70.406729221344
+Time for training over 25 epoch: 1838.5924215316772
+Epoch 26
+number of batch: 2
+------------------------------------------------
+Epoch 027 | Train Loss: 0.1073 | Acc: 96.50% | LR: 0.00022869999999999905
+evaluating model
+Validation  | Loss: 0.1045 | Acc: 97.98%
+Time for epoch 26: 70.14939284324646
+Time for training over 26 epoch: 1908.9743912220001
+Epoch 27
+number of batch: 2
+------------------------------------------------
+Epoch 028 | Train Loss: 0.1055 | Acc: 97.00% | LR: 0.00023365000000000066
+evaluating model
+Validation  | Loss: 0.1157 | Acc: 97.98%
+Time for epoch 27: 70.42918348312378
+Time for training over 27 epoch: 1979.627207994461
+Epoch 28
+number of batch: 2
+------------------------------------------------
+Epoch 029 | Train Loss: 0.0992 | Acc: 96.50% | LR: 0.00023859999999999794
+evaluating model
+Validation  | Loss: 0.1569 | Acc: 95.96%
+Time for epoch 28: 70.56648206710815
+Time for training over 28 epoch: 2050.4169545173645
+Epoch 29
+number of batch: 2
+------------------------------------------------
+Epoch 030 | Train Loss: 0.0967 | Acc: 96.50% | LR: 0.0002435499999999996
+evaluating model
+Validation  | Loss: 0.1385 | Acc: 96.97%
+Time for epoch 29: 70.37077522277832
+Time for training over 29 epoch: 2121.0257620811462
+Epoch 30
+number of batch: 2
+------------------------------------------------
+Epoch 031 | Train Loss: 0.0872 | Acc: 97.00% | LR: 0.00024850000000000127
+evaluating model
+Validation  | Loss: 0.1006 | Acc: 97.98%
+Time for epoch 30: 70.40490531921387
+Time for training over 30 epoch: 2191.661285638809
+Epoch 31
+number of batch: 2
+------------------------------------------------
+Epoch 032 | Train Loss: 0.0855 | Acc: 97.50% | LR: 0.0002534499999999985
+evaluating model
+Validation  | Loss: 0.0949 | Acc: 97.98%
+Time for epoch 31: 70.77926588058472
+Time for training over 31 epoch: 2262.676333427429
+Epoch 32
+number of batch: 2
+------------------------------------------------
+Epoch 033 | Train Loss: 0.0719 | Acc: 98.25% | LR: 0.00025840000000000016
+evaluating model
+Validation  | Loss: 0.1190 | Acc: 97.98%
+Time for epoch 32: 70.48709917068481
+Time for training over 32 epoch: 2333.4021496772766
+Epoch 33
+number of batch: 2
+------------------------------------------------
+Epoch 034 | Train Loss: 0.0726 | Acc: 98.75% | LR: 0.0002633500000000018
+evaluating model
+Validation  | Loss: 0.1179 | Acc: 97.98%
+Time for epoch 33: 70.48791766166687
+Time for training over 33 epoch: 2404.1200709342957
+Epoch 34
+number of batch: 2
+------------------------------------------------
+Epoch 035 | Train Loss: 0.0616 | Acc: 98.25% | LR: 0.0002682999999999991
+evaluating model
+Validation  | Loss: 0.0796 | Acc: 97.98%
+Time for epoch 34: 70.37935543060303
+Time for training over 34 epoch: 2474.7867686748505
+Epoch 35
+number of batch: 2
+------------------------------------------------
+Epoch 036 | Train Loss: 0.0526 | Acc: 99.25% | LR: 0.0002732500000000007
+evaluating model
+Validation  | Loss: 0.0576 | Acc: 97.98%
+Time for epoch 35: 70.73750114440918
+Time for training over 35 epoch: 2545.8028428554535
+Epoch 36
+number of batch: 2
+------------------------------------------------
+Epoch 037 | Train Loss: 0.0593 | Acc: 98.75% | LR: 0.000278199999999998
+evaluating model
+Validation  | Loss: 0.0349 | Acc: 100.00%
+Time for epoch 36: 70.54768705368042
+Time for training over 36 epoch: 2616.631249666214
+Epoch 37
+number of batch: 2
+------------------------------------------------
+Epoch 038 | Train Loss: 0.0508 | Acc: 98.75% | LR: 0.00028314999999999965
+evaluating model
+Validation  | Loss: 0.0433 | Acc: 98.99%
+Time for epoch 37: 70.94216418266296
+Time for training over 37 epoch: 2687.821135044098
+Epoch 38
+number of batch: 2
+------------------------------------------------
+Epoch 039 | Train Loss: 0.0379 | Acc: 99.50% | LR: 0.0002881000000000013
+evaluating model
+Validation  | Loss: 0.0263 | Acc: 100.00%
+Time for epoch 38: 71.36943125724792
+Time for training over 38 epoch: 2759.430837392807
+Epoch 39
+number of batch: 2
+------------------------------------------------
+Epoch 040 | Train Loss: 0.0297 | Acc: 99.75% | LR: 0.00029304999999999853
+evaluating model
+Validation  | Loss: 0.0187 | Acc: 100.00%
+Time for epoch 39: 70.61094975471497
+Time for training over 39 epoch: 2830.3317716121674
+Epoch 40
+number of batch: 2
+------------------------------------------------
+Epoch 041 | Train Loss: 0.0289 | Acc: 99.50% | LR: 0.0002980000000000002
+evaluating model
+Validation  | Loss: 0.0144 | Acc: 100.00%
+Time for epoch 40: 70.76888489723206
+Time for training over 40 epoch: 2901.3935334682465
+Epoch 41
+number of batch: 2
+------------------------------------------------
+Epoch 042 | Train Loss: 0.0209 | Acc: 100.00% | LR: 0.00030295000000000186
+evaluating model
+Validation  | Loss: 0.0143 | Acc: 100.00%
+Time for epoch 41: 70.60011529922485
+Time for training over 41 epoch: 2972.256047487259
+Epoch 42
+number of batch: 2
+------------------------------------------------
+Epoch 043 | Train Loss: 0.0200 | Acc: 99.75% | LR: 0.0003078999999999991
+evaluating model
+Validation  | Loss: 0.0139 | Acc: 100.00%
+Time for epoch 42: 70.4577693939209
+Time for training over 42 epoch: 3042.98818731308
+Epoch 43
+number of batch: 2
+------------------------------------------------
+Epoch 044 | Train Loss: 0.0200 | Acc: 100.00% | LR: 0.00031285000000000075
+evaluating model
+Validation  | Loss: 0.0167 | Acc: 100.00%
+Time for epoch 43: 69.80293130874634
+Time for training over 43 epoch: 3113.0137555599213
+Epoch 44
+number of batch: 2
+------------------------------------------------
+Epoch 045 | Train Loss: 0.0161 | Acc: 100.00% | LR: 0.000317799999999998
+evaluating model
+Validation  | Loss: 0.0138 | Acc: 100.00%
+Time for epoch 44: 70.76829648017883
+Time for training over 44 epoch: 3184.049722671509
+Epoch 45
+number of batch: 2
+------------------------------------------------
+Epoch 046 | Train Loss: 0.0124 | Acc: 100.00% | LR: 0.0003227499999999997
+evaluating model
+Validation  | Loss: 0.0146 | Acc: 100.00%
+Time for epoch 45: 70.45523858070374
+Time for training over 45 epoch: 3254.7592883110046
+Epoch 46
+number of batch: 2
+------------------------------------------------
+Epoch 047 | Train Loss: 0.0158 | Acc: 99.75% | LR: 0.00032770000000000135
+evaluating model
+Validation  | Loss: 0.0161 | Acc: 100.00%
+Time for epoch 46: 70.33295226097107
+Time for training over 46 epoch: 3325.314842939377
+Epoch 47
+number of batch: 2
+------------------------------------------------
+Epoch 048 | Train Loss: 0.0129 | Acc: 99.75% | LR: 0.00033264999999999857
+evaluating model
+Validation  | Loss: 0.0142 | Acc: 100.00%
+Time for epoch 47: 70.27647042274475
+Time for training over 47 epoch: 3395.8505713939667
+Epoch 48
+number of batch: 2
+------------------------------------------------
+Epoch 049 | Train Loss: 0.0100 | Acc: 100.00% | LR: 0.00033760000000000024
+evaluating model
+Validation  | Loss: 0.0143 | Acc: 100.00%
+Time for epoch 48: 70.63785243034363
+Time for training over 48 epoch: 3466.748135328293
+Epoch 49
+number of batch: 2
+------------------------------------------------
+Epoch 050 | Train Loss: 0.0085 | Acc: 100.00% | LR: 0.0003425500000000019
+evaluating model
+Validation  | Loss: 0.0144 | Acc: 100.00%
+Time for epoch 49: 70.7111177444458
+Time for training over 49 epoch: 3537.686884880066
+Epoch 50
+number of batch: 2
+------------------------------------------------
+Epoch 051 | Train Loss: 0.0086 | Acc: 100.00% | LR: 0.0003474999999999991
+evaluating model
+Validation  | Loss: 0.0142 | Acc: 100.00%
+Time for epoch 50: 70.4316954612732
+Time for training over 50 epoch: 3608.346867799759
+Epoch 51
+number of batch: 2
+------------------------------------------------
+Epoch 052 | Train Loss: 0.0082 | Acc: 100.00% | LR: 0.0003524500000000008
+evaluating model
+Validation  | Loss: 0.0122 | Acc: 100.00%
+Time for epoch 51: 70.23742771148682
+Time for training over 51 epoch: 3678.861223220825
+Epoch 52
+number of batch: 2
+------------------------------------------------
+Epoch 053 | Train Loss: 0.0129 | Acc: 99.75% | LR: 0.00035739999999999806
+evaluating model
+Validation  | Loss: 0.0112 | Acc: 100.00%
+Time for epoch 52: 70.85602045059204
+Time for training over 52 epoch: 3749.9858481884003
+Epoch 53
+number of batch: 2
+------------------------------------------------
+Epoch 054 | Train Loss: 0.0085 | Acc: 100.00% | LR: 0.0003623499999999997
+evaluating model
+Validation  | Loss: 0.0116 | Acc: 100.00%
+Time for epoch 53: 70.53962683677673
+Time for training over 53 epoch: 3820.7561151981354
+Epoch 54
+number of batch: 2
+------------------------------------------------
+Epoch 055 | Train Loss: 0.0085 | Acc: 100.00% | LR: 0.00036730000000000134
+evaluating model
+Validation  | Loss: 0.0108 | Acc: 100.00%
+Time for epoch 54: 70.58779692649841
+Time for training over 54 epoch: 3891.808627128601
+Epoch 55
+number of batch: 2
+------------------------------------------------
+Epoch 056 | Train Loss: 0.0071 | Acc: 100.00% | LR: 0.0003722499999999986
+evaluating model
+Validation  | Loss: 0.0109 | Acc: 100.00%
+Time for epoch 55: 70.54820370674133
+Time for training over 55 epoch: 3962.584391117096
+Epoch 56
+number of batch: 2
+------------------------------------------------
+Epoch 057 | Train Loss: 0.0056 | Acc: 100.00% | LR: 0.0003772000000000003
+evaluating model
+Validation  | Loss: 0.0097 | Acc: 100.00%
+Time for epoch 56: 70.75234270095825
+Time for training over 56 epoch: 4033.6099002361298
+Epoch 57
+number of batch: 2
+------------------------------------------------
+Epoch 058 | Train Loss: 0.0072 | Acc: 100.00% | LR: 0.0003821500000000019
+evaluating model
+Validation  | Loss: 0.0088 | Acc: 100.00%
+Time for epoch 57: 70.3045711517334
+Time for training over 57 epoch: 4104.193811178207
+Epoch 58
+number of batch: 2
+------------------------------------------------
+Epoch 059 | Train Loss: 0.0062 | Acc: 100.00% | LR: 0.00038709999999999916
+evaluating model
+Validation  | Loss: 0.0074 | Acc: 100.00%
+Time for epoch 58: 70.58973670005798
+Time for training over 58 epoch: 4175.017367839813
+Epoch 59
+number of batch: 2
+------------------------------------------------
+Epoch 060 | Train Loss: 0.0069 | Acc: 100.00% | LR: 0.00039205000000000083
+evaluating model
+Validation  | Loss: 0.0069 | Acc: 100.00%
+Time for epoch 59: 70.48257613182068
+Time for training over 59 epoch: 4245.782024145126
+Epoch 60
+number of batch: 2
+------------------------------------------------
+Epoch 061 | Train Loss: 0.0054 | Acc: 100.00% | LR: 0.0003969999999999981
+evaluating model
+Validation  | Loss: 0.0066 | Acc: 100.00%
+Time for epoch 60: 70.26932740211487
+Time for training over 60 epoch: 4316.326035499573
+Epoch 61
+number of batch: 2
+------------------------------------------------
+Epoch 062 | Train Loss: 0.0053 | Acc: 100.00% | LR: 0.0004019499999999997
+evaluating model
+Validation  | Loss: 0.0057 | Acc: 100.00%
+Time for epoch 61: 70.54978680610657
+Time for training over 61 epoch: 4387.1497547626495
+Epoch 62
+number of batch: 2
+------------------------------------------------
+Epoch 063 | Train Loss: 0.0047 | Acc: 100.00% | LR: 0.0004069000000000014
+evaluating model
+Validation  | Loss: 0.0046 | Acc: 100.00%
+Time for epoch 62: 70.72709918022156
+Time for training over 62 epoch: 4458.119312763214
+Epoch 63
+number of batch: 2
+------------------------------------------------
+Epoch 064 | Train Loss: 0.0038 | Acc: 100.00% | LR: 0.00041184999999999865
+evaluating model
+Validation  | Loss: 0.0058 | Acc: 100.00%
+Time for epoch 63: 70.44172406196594
+Time for training over 63 epoch: 4528.811691045761
+Epoch 64
+number of batch: 2
+------------------------------------------------
+Epoch 065 | Train Loss: 0.0043 | Acc: 100.00% | LR: 0.0004168000000000003
+evaluating model
+Validation  | Loss: 0.0054 | Acc: 100.00%
+Time for epoch 64: 70.048743724823
+Time for training over 64 epoch: 4599.099044084549
+Epoch 65
+number of batch: 2
+------------------------------------------------
+Epoch 066 | Train Loss: 0.0036 | Acc: 100.00% | LR: 0.00042175000000000193
+evaluating model
+Validation  | Loss: 0.0054 | Acc: 100.00%
+Time for epoch 65: 70.2634072303772
+Time for training over 65 epoch: 4669.604046344757
+Epoch 66
+number of batch: 2
+------------------------------------------------
+Epoch 067 | Train Loss: 0.0035 | Acc: 100.00% | LR: 0.0004266999999999992
+evaluating model
+Validation  | Loss: 0.0047 | Acc: 100.00%
+Time for epoch 66: 70.45430946350098
+Time for training over 66 epoch: 4740.291674852371
+Epoch 67
+number of batch: 2
+------------------------------------------------
+Epoch 068 | Train Loss: 0.0039 | Acc: 100.00% | LR: 0.00043165000000000087
+evaluating model
+Validation  | Loss: 0.0057 | Acc: 100.00%
+Time for epoch 67: 70.54484915733337
+Time for training over 67 epoch: 4811.0840401649475
+Epoch 68
+number of batch: 2
+------------------------------------------------
+Epoch 069 | Train Loss: 0.0033 | Acc: 100.00% | LR: 0.00043659999999999814
+evaluating model
+Validation  | Loss: 0.0046 | Acc: 100.00%
+Time for epoch 68: 70.66388821601868
+Time for training over 68 epoch: 4881.987207651138
+Epoch 69
+number of batch: 2
+------------------------------------------------
+Epoch 070 | Train Loss: 0.0032 | Acc: 100.00% | LR: 0.00044154999999999976
+evaluating model
+Validation  | Loss: 0.0049 | Acc: 100.00%
+Time for epoch 69: 70.67390942573547
+Time for training over 69 epoch: 4952.900574922562
+Epoch 70
+number of batch: 2
+------------------------------------------------
+Epoch 071 | Train Loss: 0.0041 | Acc: 100.00% | LR: 0.0004465000000000014
+evaluating model
+Validation  | Loss: 0.0040 | Acc: 100.00%
+Time for epoch 70: 70.75392556190491
+Time for training over 70 epoch: 5023.944858074188
+Epoch 71
+number of batch: 2
+------------------------------------------------
+Epoch 072 | Train Loss: 0.0034 | Acc: 100.00% | LR: 0.0004514499999999987
+evaluating model
+Validation  | Loss: 0.0039 | Acc: 100.00%
+Time for epoch 71: 70.70253944396973
+Time for training over 71 epoch: 5094.929161310196
+Epoch 72
+number of batch: 2
+------------------------------------------------
+Epoch 073 | Train Loss: 0.0028 | Acc: 100.00% | LR: 0.00045640000000000036
+evaluating model
+Validation  | Loss: 0.0038 | Acc: 100.00%
+Time for epoch 72: 70.7716760635376
+Time for training over 72 epoch: 5165.979418992996
+Epoch 73
+number of batch: 2
+------------------------------------------------
+Epoch 074 | Train Loss: 0.0026 | Acc: 100.00% | LR: 0.00046135000000000197
+evaluating model
+Validation  | Loss: 0.0033 | Acc: 100.00%
+Time for epoch 73: 70.64724659919739
+Time for training over 73 epoch: 5236.873619794846
+Epoch 74
+number of batch: 2
+------------------------------------------------
+Epoch 075 | Train Loss: 0.0033 | Acc: 100.00% | LR: 0.00046629999999999925
+evaluating model
+Validation  | Loss: 0.0032 | Acc: 100.00%
+Time for epoch 74: 70.55294299125671
+Time for training over 74 epoch: 5307.705508232117
+Epoch 75
+number of batch: 2
+------------------------------------------------
+Epoch 076 | Train Loss: 0.0025 | Acc: 100.00% | LR: 0.0004712500000000009
+evaluating model
+Validation  | Loss: 0.0033 | Acc: 100.00%
+Time for epoch 75: 70.14117050170898
+Time for training over 75 epoch: 5378.094079256058
+Epoch 76
+number of batch: 2
+------------------------------------------------
+Epoch 077 | Train Loss: 0.0026 | Acc: 100.00% | LR: 0.0004761999999999982
+evaluating model
+Validation  | Loss: 0.0033 | Acc: 100.00%
+Time for epoch 76: 70.42268347740173
+Time for training over 76 epoch: 5448.7558157444
+Epoch 77
+number of batch: 2
+------------------------------------------------
+Epoch 078 | Train Loss: 0.0027 | Acc: 100.00% | LR: 0.0004811499999999998
+evaluating model
+Validation  | Loss: 0.0031 | Acc: 100.00%
+Time for epoch 77: 70.58561825752258
+Time for training over 77 epoch: 5519.628591775894
+Epoch 78
+number of batch: 2
+------------------------------------------------
+Epoch 079 | Train Loss: 0.0030 | Acc: 100.00% | LR: 0.00048610000000000146
+evaluating model
+Validation  | Loss: 0.0033 | Acc: 100.00%
+Time for epoch 78: 70.30207538604736
+Time for training over 78 epoch: 5590.189534664154
+Epoch 79
+number of batch: 2
+------------------------------------------------
+Epoch 080 | Train Loss: 0.0028 | Acc: 100.00% | LR: 0.0004910499999999987
+evaluating model
+Validation  | Loss: 0.0030 | Acc: 100.00%
+Time for epoch 79: 70.88867354393005
+Time for training over 79 epoch: 5661.322965145111
+Epoch 80
+number of batch: 2
+------------------------------------------------
+Epoch 081 | Train Loss: 0.0023 | Acc: 100.00% | LR: 0.0004960000000000005
+evaluating model
+Validation  | Loss: 0.0032 | Acc: 100.00%
+Time for epoch 80: 70.312997341156
+Time for training over 80 epoch: 5731.917992115021
+Epoch 81
+number of batch: 2
+------------------------------------------------
+Epoch 082 | Train Loss: 0.0021 | Acc: 100.00% | LR: 0.0005009500000000021
+evaluating model
+Validation  | Loss: 0.0028 | Acc: 100.00%
+Time for epoch 81: 70.76066255569458
+Time for training over 81 epoch: 5802.9649221897125
+Epoch 82
+number of batch: 2
+------------------------------------------------
+Epoch 083 | Train Loss: 0.0020 | Acc: 100.00% | LR: 0.0005058999999999993
+evaluating model
+Validation  | Loss: 0.0030 | Acc: 100.00%
+Time for epoch 82: 70.46417236328125
+Time for training over 82 epoch: 5873.652126789093
+Epoch 83
+number of batch: 2
+------------------------------------------------
+Epoch 084 | Train Loss: 0.0022 | Acc: 100.00% | LR: 0.000510850000000001
+evaluating model
+Validation  | Loss: 0.0030 | Acc: 100.00%
+Time for epoch 83: 70.50162816047668
+Time for training over 83 epoch: 5944.385556936264
+Epoch 84
+number of batch: 2
+------------------------------------------------
+Epoch 085 | Train Loss: 0.0023 | Acc: 100.00% | LR: 0.0005157999999999982
+evaluating model
+Validation  | Loss: 0.0029 | Acc: 100.00%
+Time for epoch 84: 70.717444896698
+Time for training over 84 epoch: 6015.325172185898
+Epoch 85
+number of batch: 2
+------------------------------------------------
+Epoch 086 | Train Loss: 0.0021 | Acc: 100.00% | LR: 0.0005207499999999998
+evaluating model
+Validation  | Loss: 0.0029 | Acc: 100.00%
+Time for epoch 85: 70.61458325386047
+Time for training over 85 epoch: 6086.160978078842
+Epoch 86
+number of batch: 2
+------------------------------------------------
+Epoch 087 | Train Loss: 0.0026 | Acc: 100.00% | LR: 0.0005257000000000016
+evaluating model
+Validation  | Loss: 0.0028 | Acc: 100.00%
+Time for epoch 86: 70.90473866462708
+Time for training over 86 epoch: 6157.340139865875
+Epoch 87
+number of batch: 2
+------------------------------------------------
+Epoch 088 | Train Loss: 0.0021 | Acc: 100.00% | LR: 0.0005306499999999988
+evaluating model
+Validation  | Loss: 0.0027 | Acc: 100.00%
+Time for epoch 87: 70.75034141540527
+Time for training over 87 epoch: 6228.354049444199
+Epoch 88
+number of batch: 2
+------------------------------------------------
+Epoch 089 | Train Loss: 0.0022 | Acc: 100.00% | LR: 0.0005356000000000004
+evaluating model
+Validation  | Loss: 0.0026 | Acc: 100.00%
+Time for epoch 88: 70.9678463935852
+Time for training over 88 epoch: 6299.583140134811
+Epoch 89
+number of batch: 2
+------------------------------------------------
+Epoch 090 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.000540550000000002
+evaluating model
+Validation  | Loss: 0.0024 | Acc: 100.00%
+Time for epoch 89: 70.86244249343872
+Time for training over 89 epoch: 6370.717002868652
+Epoch 90
+number of batch: 2
+------------------------------------------------
+Epoch 091 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0005454999999999993
+evaluating model
+Validation  | Loss: 0.0023 | Acc: 100.00%
+Time for epoch 90: 70.53834438323975
+Time for training over 90 epoch: 6441.514944314957
+Epoch 91
+number of batch: 2
+------------------------------------------------
+Epoch 092 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.000550450000000001
+evaluating model
+Validation  | Loss: 0.0021 | Acc: 100.00%
+Time for epoch 91: 70.07696318626404
+Time for training over 91 epoch: 6511.855618715286
+Epoch 92
+number of batch: 2
+------------------------------------------------
+Epoch 093 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0005553999999999982
+evaluating model
+Validation  | Loss: 0.0021 | Acc: 100.00%
+Time for epoch 92: 70.41734075546265
+Time for training over 92 epoch: 6582.50402545929
+Epoch 93
+number of batch: 2
+------------------------------------------------
+Epoch 094 | Train Loss: 0.0022 | Acc: 100.00% | LR: 0.0005603499999999999
+evaluating model
+Validation  | Loss: 0.0021 | Acc: 100.00%
+Time for epoch 93: 70.52032661437988
+Time for training over 93 epoch: 6653.246444940567
+Epoch 94
+number of batch: 2
+------------------------------------------------
+Epoch 095 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0005653000000000015
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 94: 70.68523240089417
+Time for training over 94 epoch: 6724.190507173538
+Epoch 95
+number of batch: 2
+------------------------------------------------
+Epoch 096 | Train Loss: 0.0016 | Acc: 100.00% | LR: 0.0005702499999999988
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 95: 70.73249363899231
+Time for training over 95 epoch: 6795.194093465805
+Epoch 96
+number of batch: 2
+------------------------------------------------
+Epoch 097 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0005752000000000004
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 96: 70.79362559318542
+Time for training over 96 epoch: 6866.21550488472
+Epoch 97
+number of batch: 2
+------------------------------------------------
+Epoch 098 | Train Loss: 0.0016 | Acc: 100.00% | LR: 0.0005801500000000021
+evaluating model
+Validation  | Loss: 0.0020 | Acc: 100.00%
+Time for epoch 97: 70.42213010787964
+Time for training over 97 epoch: 6936.873977422714
+Epoch 98
+number of batch: 2
+------------------------------------------------
+Epoch 099 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0005850999999999994
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 98: 70.41444158554077
+Time for training over 98 epoch: 7007.555803060532
+Epoch 99
+number of batch: 2
+------------------------------------------------
+Epoch 100 | Train Loss: 0.0015 | Acc: 100.00% | LR: 0.000590050000000001
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 99: 70.51140546798706
+Time for training over 99 epoch: 7078.295035839081
+Epoch 100
+number of batch: 2
+------------------------------------------------
+Epoch 101 | Train Loss: 0.0015 | Acc: 100.00% | LR: 0.0005949999999999983
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 100: 70.39700818061829
+Time for training over 100 epoch: 7148.930015325546
+Epoch 101
+number of batch: 2
+------------------------------------------------
+Epoch 102 | Train Loss: 0.0017 | Acc: 100.00% | LR: 0.00059995
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 101: 70.70160937309265
+Time for training over 101 epoch: 7219.887873649597
+Epoch 102
+number of batch: 2
+------------------------------------------------
+Epoch 103 | Train Loss: 0.0013 | Acc: 100.00% | LR: 0.0006049000000000016
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 102: 70.60598158836365
+Time for training over 102 epoch: 7290.72442150116
+Epoch 103
+number of batch: 2
+------------------------------------------------
+Epoch 104 | Train Loss: 0.0018 | Acc: 100.00% | LR: 0.0006098499999999989
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 103: 70.53179287910461
+Time for training over 103 epoch: 7361.684242010117
+Epoch 104
+number of batch: 2
+------------------------------------------------
+Epoch 105 | Train Loss: 0.0013 | Acc: 100.00% | LR: 0.0006148000000000005
+evaluating model
+Validation  | Loss: 0.0014 | Acc: 100.00%
+Time for epoch 104: 70.67558908462524
+Time for training over 104 epoch: 7432.629301309586
+Epoch 105
+number of batch: 2
+------------------------------------------------
+Epoch 106 | Train Loss: 0.0012 | Acc: 100.00% | LR: 0.0006197500000000022
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 105: 70.21851682662964
+Time for training over 105 epoch: 7503.2010724544525
+Epoch 106
+number of batch: 2
+------------------------------------------------
+Epoch 107 | Train Loss: 0.0014 | Acc: 100.00% | LR: 0.0006246999999999994
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 106: 70.58683466911316
+Time for training over 106 epoch: 7574.026988983154
+Epoch 107
+number of batch: 2
+------------------------------------------------
+Epoch 108 | Train Loss: 0.0012 | Acc: 100.00% | LR: 0.0006296500000000011
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 107: 70.54425740242004
+Time for training over 107 epoch: 7644.822473049164
+Epoch 108
+number of batch: 2
+------------------------------------------------
+Epoch 109 | Train Loss: 0.0013 | Acc: 100.00% | LR: 0.0006345999999999984
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 108: 70.4455246925354
+Time for training over 108 epoch: 7715.495280981064
+Epoch 109
+number of batch: 2
+------------------------------------------------
+Epoch 110 | Train Loss: 0.0012 | Acc: 100.00% | LR: 0.00063955
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 109: 70.40295791625977
+Time for training over 109 epoch: 7786.135339021683
+Epoch 110
+number of batch: 2
+------------------------------------------------
+Epoch 111 | Train Loss: 0.0013 | Acc: 100.00% | LR: 0.0006445000000000016
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 110: 70.05815434455872
+Time for training over 110 epoch: 7856.420865774155
+Epoch 111
+number of batch: 2
+------------------------------------------------
+Epoch 112 | Train Loss: 0.0011 | Acc: 100.00% | LR: 0.0006494499999999989
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 111: 70.51936745643616
+Time for training over 111 epoch: 7927.167077064514
+Epoch 112
+number of batch: 2
+------------------------------------------------
+Epoch 113 | Train Loss: 0.0012 | Acc: 100.00% | LR: 0.0006544000000000006
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 112: 70.2596595287323
+Time for training over 112 epoch: 7997.663710832596
+Epoch 113
+number of batch: 2
+------------------------------------------------
+Epoch 114 | Train Loss: 0.0016 | Acc: 100.00% | LR: 0.0006593500000000022
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 113: 70.57698631286621
+Time for training over 113 epoch: 8068.471126317978
+Epoch 114
+number of batch: 2
+------------------------------------------------
+Epoch 115 | Train Loss: 0.0016 | Acc: 100.00% | LR: 0.0006642999999999995
+evaluating model
+Validation  | Loss: 0.0014 | Acc: 100.00%
+Time for epoch 114: 71.01566815376282
+Time for training over 114 epoch: 8139.754061222076
+Epoch 115
+number of batch: 2
+------------------------------------------------
+Epoch 116 | Train Loss: 0.0011 | Acc: 100.00% | LR: 0.0006692500000000011
+evaluating model
+Validation  | Loss: 0.0013 | Acc: 100.00%
+Time for epoch 115: 70.812673330307
+Time for training over 115 epoch: 8210.841504335403
+Epoch 116
+number of batch: 2
+------------------------------------------------
+Epoch 117 | Train Loss: 0.0017 | Acc: 100.00% | LR: 0.0006741999999999984
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 116: 70.66973614692688
+Time for training over 116 epoch: 8281.74491596222
+Epoch 117
+number of batch: 2
+------------------------------------------------
+Epoch 118 | Train Loss: 0.0011 | Acc: 100.00% | LR: 0.0006791500000000001
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 117: 70.02983808517456
+Time for training over 117 epoch: 8352.018275022507
+Epoch 118
+number of batch: 2
+------------------------------------------------
+Epoch 119 | Train Loss: 0.0011 | Acc: 100.00% | LR: 0.0006841000000000017
+evaluating model
+Validation  | Loss: 0.0015 | Acc: 100.00%
+Time for epoch 118: 70.15658164024353
+Time for training over 118 epoch: 8422.40858387947
+Epoch 119
+number of batch: 2
+------------------------------------------------
+Epoch 120 | Train Loss: 0.0015 | Acc: 100.00% | LR: 0.000689049999999999
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 119: 70.38229632377625
+Time for training over 119 epoch: 8493.024652004242
+Epoch 120
+number of batch: 2
+------------------------------------------------
+Epoch 121 | Train Loss: 0.0012 | Acc: 100.00% | LR: 0.0006940000000000006
+evaluating model
+Validation  | Loss: 0.0017 | Acc: 100.00%
+Time for epoch 120: 611.8223924636841
+Time for training over 120 epoch: 9108.522217273712
+Epoch 121
+number of batch: 2
+------------------------------------------------
+Epoch 122 | Train Loss: 0.0010 | Acc: 100.00% | LR: 0.0006989500000000023
+evaluating model
+Validation  | Loss: 0.0018 | Acc: 100.00%
+Time for epoch 121: 74.41588854789734
+Time for training over 121 epoch: 9183.678492546082
+Epoch 122
+number of batch: 2
+------------------------------------------------
+Epoch 123 | Train Loss: 0.0011 | Acc: 100.00% | LR: 0.0007038999999999995
+evaluating model
+Validation  | Loss: 0.0016 | Acc: 100.00%
+Time for epoch 122: 70.82241773605347
+Time for training over 122 epoch: 9255.001789093018
+Epoch 123
+number of batch: 2
+------------------------------------------------
+Epoch 124 | Train Loss: 0.0009 | Acc: 100.00% | LR: 0.0007088500000000012
+evaluating model
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-47.20--14.80-rightHanded0-radius19.40-pitch12.20-phi94.00-teta0-1.0-teta1-2.2box70_0_35.mrc0.30-51.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-47.20--14.80-rightHanded0-radius19.40-pitch12.20-phi94.00-teta0-1.0-teta1-2.2box70_0_35.mrc0.30-51.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-47.20--14.80-rightHanded0-radius19.40-pitch12.20-phi94.00-teta0-1.0-teta1-2.2box35_0_35.mrc0.29-152.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-47.20--14.80-rightHanded0-radius19.40-pitch12.20-phi94.00-teta0-1.0-teta1-2.2box35_0_35.mrc0.29-152.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--38.90-6.70-rightHanded0-radius9.70-pitch5.00-phi283.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.34-234.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--38.90-6.70-rightHanded0-radius9.70-pitch5.00-phi283.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.34-234.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_35box36_71_36endpoint.mrc0.27-226.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_35box36_71_36endpoint.mrc0.27-226.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box0_70_35.mrc0.29-91.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box0_70_35.mrc0.29-91.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-16.80--48.00-rightHanded0-radius9.80-pitch6.10-phi13.00-teta0-1.0-teta1-2.2box0_0_0box2_2_2endpoint_box_2.mrc0.44-217.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-16.80--48.00-rightHanded0-radius9.80-pitch6.10-phi13.00-teta0-1.0-teta1-2.2box0_0_0box2_2_2endpoint_box_2.mrc0.44-217.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box0_0_0_box_1.mrc0.48-193.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box0_0_0_box_1.mrc0.48-193.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.60--1.10-32.80-rightHanded1-radius13.20-pitch3.10-phi38.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.33-217.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.60--1.10-32.80-rightHanded1-radius13.20-pitch3.10-phi38.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.33-217.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_0.mrc0.39-59.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_0.mrc0.39-59.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box35_0_0.mrc0.27-290.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box35_0_0.mrc0.27-290.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-35.30--6.50-rightHanded1-radius9.20-pitch14.60-phi140.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.29-225.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-35.30--6.50-rightHanded1-radius9.20-pitch14.60-phi140.00-teta0-1.0-teta1-2.2box0_0_0.mrc0.29-225.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.25-219.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.25-219.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box70_70_0.mrc0.31-232.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box70_70_0.mrc0.31-232.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box35_105_0.mrc0.22-151.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40--25.30-34.40-rightHanded0-radius18.50-pitch14.40-phi16.00-teta0-1.0-teta1-2.2box35_105_0.mrc0.22-151.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-35.70-21.00-rightHanded1-radius19.10-pitch3.90-phi143.00-teta0-1.0-teta1-2.2box35_105_35.mrc0.23-74.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-35.70-21.00-rightHanded1-radius19.10-pitch3.90-phi143.00-teta0-1.0-teta1-2.2box35_105_35.mrc0.23-74.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-16.80--48.00-rightHanded0-radius9.80-pitch6.10-phi13.00-teta0-1.0-teta1-2.2box0_0_0endpoint15_27_6_box_4.mrc0.28-268.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-16.80--48.00-rightHanded0-radius9.80-pitch6.10-phi13.00-teta0-1.0-teta1-2.2box0_0_0endpoint15_27_6_box_4.mrc0.28-268.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box0_0_35.mrc0.34-285.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box0_0_35.mrc0.34-285.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30-35.40-12.40-rightHanded0-radius7.60-pitch10.20-phi147.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.38-266.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30-35.40-12.40-rightHanded0-radius7.60-pitch10.20-phi147.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.38-266.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.60--1.10-32.80-rightHanded1-radius13.20-pitch3.10-phi38.00-teta0-1.0-teta1-2.2box0_35_35.mrc0.44-86.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.60--1.10-32.80-rightHanded1-radius13.20-pitch3.10-phi38.00-teta0-1.0-teta1-2.2box0_35_35.mrc0.44-86.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_35box36_71_36endpoint.mrcbox38_73_38endpoint.mrcbox38_73_38endpoint.mrc0.18-231.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_70_35box36_71_36endpoint.mrcbox38_73_38endpoint.mrcbox38_73_38endpoint.mrc0.18-231.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box0_0_35box0_0_35endpoint.mrcbox1_1_36endpoint.mrcbox4_4_39endpoint.mrc0.25-236.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box0_0_35box0_0_35endpoint.mrcbox1_1_36endpoint.mrcbox4_4_39endpoint.mrc0.25-236.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_0_0.mrc0.38-273.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.40-10.90-29.40-rightHanded0-radius13.00-pitch4.30-phi83.00-teta0-1.0-teta1-2.2box35_0_0.mrc0.38-273.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box35_35_0endpoint67_50_5_box_5.mrc0.28-125.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box35_35_0endpoint67_50_5_box_5.mrc0.28-125.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.48-123.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.30--44.50-44.60-rightHanded0-radius13.30-pitch4.70-phi273.00-teta0-1.0-teta1-2.2box0_35_0.mrc0.48-123.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box0_35_35_box_9.mrc0.28-186.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50-27.40-25.30-rightHanded0-radius10.60-pitch3.80-phi328.00-teta0-1.0-teta1-2.2box0_35_35_box_9.mrc0.28-186.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--35.40--12.70-rightHanded0-radius12.70-pitch6.20-phi60.00-teta0-1.0-teta1-2.2box70_35_0.mrc0.35-67.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--35.40--12.70-rightHanded0-radius12.70-pitch6.20-phi60.00-teta0-1.0-teta1-2.2box70_35_0.mrc0.35-67.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--35.40--12.70-rightHanded0-radius12.70-pitch6.20-phi60.00-teta0-1.0-teta1-2.2box0_0_0box3_3_3endpoint.mrc0.22-153.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.50--35.40--12.70-rightHanded0-radius12.70-pitch6.20-phi60.00-teta0-1.0-teta1-2.2box0_0_0box3_3_3endpoint.mrc0.22-153.mrc'
+file /home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-35.30--6.50-rightHanded1-radius9.20-pitch14.60-phi140.00-teta0-1.0-teta1-2.2box0_0_35.mrc0.23-61.mrc is corrupted. Error : [Errno 2] No such file or directory: '/home/ossian/smallDataCopy/onlyNoiseNoStruct/trueNoiseMrcnoisespiralDNAcenter-0.20-35.30--6.50-rightHanded1-radius9.20-pitch14.60-phi140.00-teta0-1.0-teta1-2.2box0_0_35.mrc0.23-61.mrc'
