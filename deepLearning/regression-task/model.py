@@ -256,3 +256,38 @@ class Model4(nn.Module):
 
     def forward(self, x):
         return self.classifier(self.features(x))
+
+
+class MrcDataset2variable(Dataset):
+    def __init__(self, mrcDic, transform=None): 
+        self.MrcDic = mrcDic
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.MrcDic)
+    
+    def __getitem__(self, idx):
+        
+        mrcfileName = self.MrcDic[idx]["filename"]
+        
+        label = [self.MrcDic[idx]["radius"], self.MrcDic[idx]["pitch"]]
+
+        # Loading data
+        with mrcfile.open(mrcfileName, mode='r+') as mrc:
+            mrcData = mrc.data
+
+        mindata=np.min(mrcData)
+        for i in range(mrcData.shape[0]):
+            mrcData[i][0][0]=0.0
+        fileStd=np.std(mrcData)
+        fileMean=np.mean(mrcData)
+        mrcData = (mrcData - fileMean) / fileStd
+        
+        mrcData = torch.from_numpy(mrcData).float()
+        label = torch.tensor(label, dtype=torch.float32)
+        
+        # Add channel dimension
+        mrcData = mrcData.unsqueeze(0)
+        if self.transform:
+            mrcData = self.transform(mrcData)
+        return mrcData, label
