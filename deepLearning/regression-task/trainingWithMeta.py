@@ -47,6 +47,14 @@ def are_args_valid(args) -> bool:
         if not os.path.exists(path):
             print(f"Fatal: path {path} does not exist")
             return False
+
+    if args.max_epochs <= 0:
+        raise ValueError("max epochs must be a positive integer")
+    if args.learning_rate < 0 or args.learning_rate > 1:
+        raise ValueError("learning rate must be floating-point number between 0 and 1")
+    if args.noise_chance < 0 or args.noise_chance > 1:
+        raise ValueError("noise chance must be floating-point number between 0 and 1")
+    
     return True
 
 def get_args():
@@ -62,7 +70,11 @@ def get_args():
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
     parser.add_argument("--patience", "-p", type=int, default=60)
     parser.add_argument("--verbose", "-v", action="store_true")
-
+    parser.add_argument("--max_epochs", "-me", type=int, default=1000)
+    parser.add_argument("--learning_rate", "-lr", type=float, default=0.005)
+    parser.add_argument("--noise_chance", "-nc", type=float)
+    parser.add_argument("--momentum", "-mom", type=float, default=0.0)
+    
     return parser.parse_args()
 
 def main() -> None:
@@ -117,22 +129,30 @@ def main() -> None:
 
     model= Model4().to(device) #last model for regrssion of 2 varaible
     loss_fn = torch.nn.MSELoss()
-    optimizer = torch.optim.AdamW(
-        model.parameters(),
-        lr=0.005,
-        betas=(0.9, 0.9999),
+    
+    optimizer = torch.optim.SGD(
+    model.parameters(),
+        lr=args.learning_rate,
         weight_decay=0.01,
-        eps=1e-7,
-        amsgrad=True
+        momentum = args.momentum
     )
+#    optimizer = torch.optim.AdamW(
+#        model.parameters(),
+#        lr=args.learning_rate,
+#        betas=(0.9, 0.9999),
+#        weight_decay=0.01,
+#        eps=1e-7,
+#        momentum = args.momentum
+       #     amsgrad=True
+#    )
 
-    scheduler = torch.optim.lr_scheduler.CyclicLR(
-        optimizer,
-        base_lr=0.0001,
-        max_lr=0.01,
-        step_size_up=2000,
-        cycle_momentum=False
-    )
+   # scheduler = torch.optim.lr_scheduler.CyclicLR(
+   #     optimizer,
+   #     base_lr=0.0001,
+   #     max_lr=0.01,
+   #     step_size_up=2000,
+   #     cycle_momentum=False
+   # )
 
     scaler = GradScaler()
     # Load the pre-trained model
@@ -163,7 +183,7 @@ def main() -> None:
     #--------------------------------------Training
     print("Start training")
     timeTraining = time.time()
-    for epoch in range(1000):
+    for epoch in range(args.max_epochs):
         timeEpoch = time.time()
         print(f"Epoch {epoch}")
         model.train(True)
@@ -171,13 +191,16 @@ def main() -> None:
         for i, data in enumerate(trainDataloader,0):
             inputs, labels = data
             #print("inputs:", inputs[0])
-            #print("labels:", labels[0])
+            print("labels:", labels[0])
             #return
-            inputs = inputs.float().to(device) # original: inputs = inputs.float().to(device)
-            labels = labels.float().to(device) # original: labels = labels.to(device) 
+            inputs = inputs.float().to(device)
+            labels = labels.float().to(device)
             optimizer.zero_grad()
             outputs = model(inputs)
+            print("outputs:", outputs[0])
             loss = loss_fn(outputs, labels) # MSE between outputs and labels
+            single_loss = loss_fn(outputs[0], labels[0])
+            print("loss:", single_loss)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) #gradient clipping
             optimizer.step()
@@ -188,7 +211,7 @@ def main() -> None:
                 trainLosess.append(last_loss)
                 print(f"Epoch {epoch}, loss: {last_loss:.4f}")
                 running_loss = 0.0
-        print(f"LR: {optimizer.param_groups[0]['lr']}")
+        #print(f"LR: {optimizer.param_groups[0]['lr']}")
         print("evaluating")
         model.eval()
         vrunning_loss = 0.
@@ -206,13 +229,15 @@ def main() -> None:
                 vrunning_loss += vloss.item()
         avg_vloss = vrunning_loss / len(testDataloader)
         validLosess.append(avg_vloss)
-        scheduler.step()
+        #scheduler.step()
         if avg_vloss < best_vloss:
             best_vloss = avg_vloss
             best_tloss = last_loss
             torch.save(model.state_dict(), args.model_output)
+            print("saving model state dict to", args.model_output)
         else:
             waited+=1
+            print(f"{waited} epochs have passed since validation loss last dropped. patience: {args.patience}")
             if waited > args.patience:
                 print(f"LOSS train {last_loss} valid {avg_vloss}")
                 print(f"Time for epoch {epoch}: {time.time()-timeEpoch}")
