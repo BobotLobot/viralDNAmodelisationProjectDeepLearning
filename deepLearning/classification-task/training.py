@@ -247,8 +247,8 @@ def main():
         if avg_vloss < best_vloss:
             best_vloss = avg_vloss
             best_tloss = last_loss # actualy not the better overall but associated to the better validation loss
-            torch.save(model.state_dict(), args.model_output)
-	            
+            torch.save(model.state_dict(), args.model_output) # saves the model, we deem it to be the best so far
+	        
             waited=0
         else:
             waited+=1

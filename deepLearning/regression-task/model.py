@@ -1,4 +1,3 @@
-import torch
 from extractParameterFromName import *
 import os
 import torch
@@ -210,7 +209,7 @@ class Model4(nn.Module):
             nn.Flatten()
         )
 
-        self.classifier = nn.Sequential(
+        self.regressor = nn.Sequential(
             nn.Linear(128*4*4*4, 512),
             nn.BatchNorm1d(512),
             nn.LeakyReLU(leakySlope),
@@ -227,4 +226,4 @@ class Model4(nn.Module):
                     nn.init.constant_(m.bias, 0)
 
     def forward(self, x):
-        return self.classifier(self.features(x))
+        return self.regressor(self.features(x))
