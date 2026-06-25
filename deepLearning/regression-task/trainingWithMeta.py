@@ -60,7 +60,6 @@ def are_args_valid(args) -> bool:
 def get_args():
     parser = ArgumentParser()
     parser.add_argument("--fine_tuning", "-ft", action="store_true")
-    parser.add_argument("--log_path", "-l", type=str, required=False, default='training_log.log')
     parser.add_argument("--pretrained_model", "-pm", type=str)
     parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
     parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
@@ -68,12 +67,12 @@ def get_args():
     parser.add_argument("--accuracy_output", "-ao", type=str, default="training_accuracy.png")
     parser.add_argument("--loss_output", "-lo", type=str, default="training_loss.png")
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
-    parser.add_argument("--patience", "-p", type=int, default=60)
+    parser.add_argument("--patience", "-p", type=int, default=20)
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--max_epochs", "-me", type=int, default=1000)
-    parser.add_argument("--learning_rate", "-lr", type=float, default=0.005)
+    parser.add_argument("--learning_rate", "-lr", type=float, default=0.05)
     parser.add_argument("--noise_chance", "-nc", type=float)
-    parser.add_argument("--momentum", "-mom", type=float, default=0.0)
+    parser.add_argument("--momentum", "-mom", type=float, default=0.9)
     
     return parser.parse_args()
 
