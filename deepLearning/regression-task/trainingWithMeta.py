@@ -70,7 +70,7 @@ def get_args():
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--max_epochs", "-me", type=int, default=1000)
     parser.add_argument("--learning_rate", "-lr", type=float, default=0.05)
-    parser.add_argument("--noise_chance", "-nc", type=float, default=0.75)
+    parser.add_argument("--noise_chance", "-nc", type=float, default=0.95)
     parser.add_argument("--momentum", "-mom", type=float, default=0.9)
     
     return parser.parse_args()
@@ -106,13 +106,14 @@ def main() -> None:
 
     torch.cuda.empty_cache() #maybe not necessary just in case
     #loading class
-    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile, noiseDirectory=noisyDataDirectoryPath, noNoiseDirectory=noNoiseDataDirectoryPath, verbose = args.verbose) # note: copied from other model
-    #spliting
+    dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=metafile,
+    noiseDirectory=noisyDataDirectoryPath,
+    noNoiseDirectory=noNoiseDataDirectoryPath,
+    verbose = args.verbose,
+    odds_noisy = args.noise_chance)
+    #splitting
     trainDataset, testDataset = random_split(dataset , [0.8, 0.2])
-
-
-    #no augmentation/denoising
-
+    
     print(f"number of data points in training: {len(trainDataset)}")
     print(f"number of data points in testing: {len(testDataset)}")
     #data loader
@@ -183,7 +184,7 @@ def main() -> None:
     timeTraining = time.time()
     for epoch in range(args.max_epochs):
         timeEpoch = time.time()
-        print(f"Epoch {epoch}")
+        print(f"Epoch {epoch} out of {args.max_epochs}")
         model.train(True)
         print(f"number of batch: {len(trainDataloader)}")
         for i, data in enumerate(trainDataloader,0):

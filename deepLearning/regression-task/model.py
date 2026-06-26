@@ -12,12 +12,12 @@ leakySlope=0.2
 MATCHED_DATAPOINTS_PER_PRINT = 5
 
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile, noiseDirectory, noNoiseDirectory, training=False, transform=None, verbose=False):
+    def __init__(self, metaFile : str, noiseDirectory : str, noNoiseDirectory : str, training=False : bool, transform=None, verbose=False : bool, odds_noisy = 0.95 : float):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
         self.filterMetaData(metaFile,noiseDirectory,noNoiseDirectory, verbose) # fills MrcFiles
-        self.denoise_prob = 0.05
+        self.denoise_prob = 1 - odds_noisy
         self.training = training
         
     def setTraining(self,training:bool)->None: #set so test dataset will not be denoised
