@@ -12,7 +12,14 @@ leakySlope=0.2
 MATCHED_DATAPOINTS_PER_PRINT = 5
 
 class MrcDataset1vMetaDataWithNoiseFile(Dataset):
-    def __init__(self, metaFile : str, noiseDirectory : str, noNoiseDirectory : str, training=False : bool, transform=None, verbose=False : bool, odds_noisy = 0.95 : float):
+    def __init__(self,
+    metaFile : str, 
+    noiseDirectory : str,
+    noNoiseDirectory : str,
+    training=False : bool,
+    transform=None,
+    verbose=False : bool,
+    odds_noisy = 0.95 : float):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]
@@ -140,7 +147,7 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
         return mrcData, label
 
 class SkippConnnection(nn.Module):
-    def __init__(self, in_channels, expansion=4):  
+    def __init__(self, in_channels, expansion=4): # note that no dropout occurse here
         super().__init__()
         hidden_dim = in_channels * expansion
         
@@ -171,13 +178,13 @@ class SkippConnnection(nn.Module):
         return self.block(x) + self.shortcut(x)
     
 class Model4(nn.Module):
-    def __init__(self, in_channels=1, num_classes=2):
+    def __init__(self, in_channels=1, num_classes=2, dropout_factor=1.0): # classes here does not mean classes but responses/outputs.
         super().__init__()
         
         self.features = nn.Sequential(
 
             nn.Conv3d(in_channels, 32, 3, padding=1, bias=False),
-            nn.Dropout3d(0.2),
+            nn.Dropout3d(0.2*dropout_factor),
             nn.BatchNorm3d(32),
             nn.LeakyReLU(leakySlope),
             nn.MaxPool3d(2, 2),
@@ -189,19 +196,19 @@ class Model4(nn.Module):
             nn.BatchNorm3d(64),
             nn.LeakyReLU(leakySlope),
             # CBAM(64),  
-            nn.Dropout3d(0.3),
+            nn.Dropout3d(0.3*dropout_factor),
             
             SkippConnnection(64),
             SkippConnnection(64),
 
             nn.Conv3d(64, 128, 3, padding=1, bias=False),
             nn.BatchNorm3d(128),
-            nn.Dropout3d(0.3),
+            nn.Dropout3d(0.3*dropout_factor),
             nn.LeakyReLU(leakySlope),
 
             nn.Conv3d(128, 128, 3, padding=1, bias=False),
             nn.BatchNorm3d(128),
-            nn.Dropout3d(0.2),
+            nn.Dropout3d(0.2*dropout_factor),
             nn.LeakyReLU(leakySlope),
 
             nn.AdaptiveAvgPool3d((4, 4, 4)),
@@ -212,7 +219,7 @@ class Model4(nn.Module):
             nn.Linear(128*4*4*4, 512),
             nn.BatchNorm1d(512),
             nn.LeakyReLU(leakySlope),
-            nn.Dropout(0.4),
+            nn.Dropout(0.4*dropout_factor),
             nn.Linear(512, 2)
         )
         self._init_weights()

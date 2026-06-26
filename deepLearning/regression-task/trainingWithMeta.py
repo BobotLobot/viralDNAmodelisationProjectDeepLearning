@@ -54,6 +54,10 @@ def are_args_valid(args) -> bool:
         raise ValueError("learning rate must be floating-point number between 0 and 1")
     if args.noise_chance < 0 or args.noise_chance > 1:
         raise ValueError("noise chance must be floating-point number between 0 and 1")
+    if args.dropout_factor < 0 or args.dropout_factor > 1:
+        raise ValueError("dropout factor must be floating-point number between 0 and 1")
+    if args.weight_decay < 0 or args.weight_decay > 1:
+        raise ValueError("weight decay must be floating-point number between 0 and 1")
     
     return True
 
@@ -72,6 +76,8 @@ def get_args():
     parser.add_argument("--learning_rate", "-lr", type=float, default=0.05)
     parser.add_argument("--noise_chance", "-nc", type=float, default=0.95)
     parser.add_argument("--momentum", "-mom", type=float, default=0.9)
+    parser.add_argument("--dropout_factor", "-df", type=float, default=1.0)
+    parser.add_argument("--weight_decay", "-wd", type=float, default=0.01)
     
     return parser.parse_args()
 
@@ -126,13 +132,13 @@ def main() -> None:
 
     #--------------------------------------model initiaitsation & learning parameters
 
-    model= Model4().to(device) #last model for regrssion of 2 varaible
+    model= Model4(dropout_factor = args.dropout_factor).to(device)
     loss_fn = torch.nn.MSELoss()
     
     optimizer = torch.optim.SGD(
     model.parameters(),
         lr=args.learning_rate,
-        weight_decay=0.01,
+        weight_decay=args.weight_decay,
         momentum = args.momentum
     )
 #    optimizer = torch.optim.AdamW(
