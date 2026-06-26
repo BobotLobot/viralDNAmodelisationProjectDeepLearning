@@ -16,10 +16,10 @@ class MrcDataset1vMetaDataWithNoiseFile(Dataset):
     metaFile : str, 
     noiseDirectory : str,
     noNoiseDirectory : str,
-    training=False : bool,
+    training=False,
     transform=None,
-    verbose=False : bool,
-    odds_noisy = 0.95 : float):
+    verbose=False,
+    odds_noisy = 0.95):
         self.transform = transform
         self.augmenation_prob = 0.5
         self.MrcFiles =[]

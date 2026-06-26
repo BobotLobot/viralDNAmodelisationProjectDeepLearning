@@ -196,16 +196,17 @@ def main() -> None:
         for i, data in enumerate(trainDataloader,0):
             inputs, labels = data
             #print("inputs:", inputs[0])
-            print("labels:", labels[0])
             #return
             inputs = inputs.float().to(device)
             labels = labels.float().to(device)
             optimizer.zero_grad()
             outputs = model(inputs)
-            print("outputs:", outputs[0])
+            print("sample label, response and loss:")
+            print("sample label:", labels[0])
+            print("sample outputs:", outputs[0])
             loss = loss_fn(outputs, labels) # MSE between outputs and labels
             single_loss = loss_fn(outputs[0], labels[0])
-            print("loss:", single_loss)
+            print("sample loss:", single_loss)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) #gradient clipping
             optimizer.step()
@@ -254,7 +255,7 @@ def main() -> None:
 
         plot_training_losses(trainLosess, validLosess, save_path=args.loss_output)
 
-        print(f"Time for training over {epoch} epoch: {time.time()-timeTraining}")
+        print(f"Time for training over {epoch} epoch: {time.time()-timeTraining}\n")
     save_losses_to_csv(trainLosess, validLosess)
     print("====================================================================")
     print("end of the training")
