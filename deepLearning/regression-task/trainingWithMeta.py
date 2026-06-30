@@ -68,7 +68,8 @@ def get_args():
     parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
     parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
     parser.add_argument("--meta_file", "-m", type=str, required=True)
-    parser.add_argument("--loss_output", "-lo", type=str, default="training_loss.png")
+    parser.add_argument("--loss_png", "-lp", type=str, default="training_loss.png")
+    parser.add_argument("--loss_csv", "-lc", type=str, default="losses.csv")
     parser.add_argument("--model_output", "-mo", type=str, default='best_model.pth')
     parser.add_argument("--patience", "-p", type=int, default=20)
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -236,10 +237,10 @@ def main() -> None:
         print(f"LOSS train {last_loss} valid {avg_vloss}")
         print(f"Time for epoch {epoch}: {time.time()-timeEpoch}")
 
-        plot_training_losses(trainLosess, validLosess, save_path=args.loss_output)
-
+        print(f"saving losses to {args.loss_csv} and {args.loss_png}")
+        plot_training_losses(trainLosess, validLosess, save_path=args.loss_png)
+        save_losses_to_csv(trainLosess, validLosess, args.loss_csv)
         print(f"Time for training over {epoch} epoch: {time.time()-timeTraining}\n")
-    save_losses_to_csv(trainLosess, validLosess)
     print("====================================================================")
     print("end of the training")
     print(f"LOSS train {best_tloss} valid {best_vloss}")
