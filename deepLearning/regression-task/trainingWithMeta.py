@@ -54,8 +54,8 @@ def are_args_valid(args) -> bool:
         raise ValueError("learning rate must be floating-point number between 0 and 1")
     if args.noise_chance < 0 or args.noise_chance > 1:
         raise ValueError("noise chance must be floating-point number between 0 and 1")
-    if args.dropout_factor < 0 or args.dropout_factor > 1:
-        raise ValueError("dropout factor must be floating-point number between 0 and 1")
+    if args.dropout_factor < 0:
+        raise ValueError("dropout factor must be positive floating-point number")
     if args.weight_decay < 0 or args.weight_decay > 1:
         raise ValueError("weight decay must be floating-point number between 0 and 1")
     
@@ -76,7 +76,7 @@ def get_args():
     parser.add_argument("--learning_rate", "-lr", type=float, default=0.05)
     parser.add_argument("--noise_chance", "-nc", type=float, default=0.95)
     parser.add_argument("--momentum", "-mom", type=float, default=0.9)
-    parser.add_argument("--dropout_factor", "-df", type=float, default=1.0)
+    parser.add_argument("--dropout_factor", "-df", type=float, default=0.4)
     parser.add_argument("--weight_decay", "-wd", type=float, default=0.01)
     
     return parser.parse_args()
@@ -141,24 +141,7 @@ def main() -> None:
         weight_decay=args.weight_decay,
         momentum = args.momentum
     )
-#    optimizer = torch.optim.AdamW(
-#        model.parameters(),
-#        lr=args.learning_rate,
-#        betas=(0.9, 0.9999),
-#        weight_decay=0.01,
-#        eps=1e-7,
-#        momentum = args.momentum
-       #     amsgrad=True
-#    )
-
-   # scheduler = torch.optim.lr_scheduler.CyclicLR(
-   #     optimizer,
-   #     base_lr=0.0001,
-   #     max_lr=0.01,
-   #     step_size_up=2000,
-   #     cycle_momentum=False
-   # )
-
+    
     scaler = GradScaler()
     # Load the pre-trained model
     if fineTunning:
@@ -217,7 +200,6 @@ def main() -> None:
                 trainLosess.append(last_loss)
                 print(f"Epoch {epoch}, loss: {last_loss:.4f}")
                 running_loss = 0.0
-        #print(f"LR: {optimizer.param_groups[0]['lr']}")
         print("evaluating")
         model.eval()
         vrunning_loss = 0.
@@ -241,8 +223,9 @@ def main() -> None:
             best_tloss = last_loss
             torch.save(model.state_dict(), args.model_output)
             print("saving model state dict to", args.model_output)
+            waited = 0
         else:
-            waited+=1
+            waited += 1
             print(f"{waited} epochs have passed since validation loss last dropped. patience: {args.patience}")
             if waited > args.patience:
                 print(f"LOSS train {last_loss} valid {avg_vloss}")
