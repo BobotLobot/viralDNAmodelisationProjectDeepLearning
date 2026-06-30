@@ -106,12 +106,10 @@ def benchmark(model, dataset, verbose, out_path, num_predictions):
 def get_args() -> argparse.Namespace:
     parser = ArgumentParser()
     parser.add_argument("--fine_tuning", "-ft", action="store_true")
-    parser.add_argument("--log_path", "-l", type=str, required=False, default='training_log.log')
     parser.add_argument("--pretrained_model", "-pm", required=True)
     parser.add_argument("--noisy_data_dir", "-nd", type=str, required=True)
     parser.add_argument("--not_noisy_data_dir", "-nnd", type=str, required=True)
     parser.add_argument("--meta_file", "-m", type=str, required=True)
-    parser.add_argument("--only_noise_dir", "-on", type=str, required=True)
     parser.add_argument("--verbose", "-v", action="store_true")
     
     parser.add_argument("--output_path", "-o", type=str, default="./preds_out.csv")
@@ -133,7 +131,7 @@ def validate_args(args : argparse.Namespace) -> None:
         print("Fatal: path to pretrained model does not exist")
         return False
 
-    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file, args.only_noise_dir, args.pretrained_model)
+    paths_to_check = (args.noisy_data_dir, args.not_noisy_data_dir, args.meta_file, args.pretrained_model)
     for path in paths_to_check:
         if not os.path.exists(path):
             raise ValueError(f"path {path} does not exist")
