@@ -11,7 +11,6 @@ import os.path
 PREDICTION_BATCH_SIZE = 20
 
 def get_data(args : argparse.Namespace):
-    print("loading dataset...")
     dataset = MrcDataset1vMetaDataWithNoiseFile(metaFile=args.meta_file,
     noiseDirectory=args.noisy_data_dir,
     noNoiseDirectory=args.not_noisy_data_dir,
@@ -138,12 +137,17 @@ def validate_args(args : argparse.Namespace) -> None:
 def main():
     args = get_args()
     validate_args(args)
-    
-    print("loading model...")
+
+    if args.verbose:
+        print("loading model...")
     model = Model4()
     model.load_state_dict(torch.load(args.pretrained_model))
+    if args.verbose:
+        print("loading data...")
     data = get_data(args)
 
+    if args.verbose:
+        print("benchmarking...")
     benchmark(model, data, args.verbose, args.output_path, args.num_predictions)
 
 main()
